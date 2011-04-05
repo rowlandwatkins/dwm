@@ -1,0 +1,195 @@
+/* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
+
+/* appearance */
+static const char font[]            = "envy code r 9";
+static const char normbordercolor[] = "#212121";
+static const char normbgcolor[]     = "#121212";
+static const char normfgcolor[]     = "#696969";
+static const char selbordercolor[]  = "#696969";
+static const char selbgcolor[]      = "#121212";
+static const char selfgcolor[]      = "#e0e0e0";
+static const char urgbordercolor[]  = "#bf4d80";
+static const char urgbgcolor[]      = "#121212";
+static const char urgfgcolor[]      = "#bf4d80";
+static const unsigned int borderpx  = 1;                /* border pixel of windows */
+static const unsigned int snap      = 10;               /* snap pixel */
+static const unsigned int gappx     = 2;
+static const Bool showbar           = True;             /* False means no bar */
+static const Bool topbar            = True;             /* False means bottom bar */
+static const char scratchpadname[]  = "Scratchpad";
+
+/* layout(s) */
+static const float mfact      = 0.60;     /* factor of master area size [0.05..0.95] */
+static const Bool resizehints = False;    /* True means respect size hints in tiled resizals */
+static const int nmaster      = 1;        /* default number of clients in the master area */
+
+#include "pidgin-grid.c"
+#include "nbstack.c"
+static const Layout layouts[] = {
+	/* symbol     arrange function */
+	{ "[]=",      ntile },
+    { "TTT",      nbstack },
+	{ "><>",      NULL },     /* no layout function means floating behavior */
+	{ "[ ]",      monocle },
+    { "###",      pidgin },
+
+};
+
+/* tagging */
+static const Tag tags[] = {
+        /* name       layout           mfact    nmaster */
+        { "term",     &layouts[0],     -1,      -1 },
+        { "web",      &layouts[3],     -1,      -1 },
+        { "im",       &layouts[4],   0.29,      -1 },
+        { "misc",     &layouts[2],     -1,      -1 },
+		{ "gimp",     &layouts[0],   0.21,      -1 },
+};
+
+static const Rule rules[] = {
+    	/* class              instance  title                  tags mask  isfloating  monitor */
+        {  NULL,              NULL,     "tmux",                1 << 0,    False,      -1 },
+        { "Keepassx",         NULL,      NULL,                 1 << 1,    True,       -1 },
+    	{ "Opera",            NULL,      NULL,                 1 << 1,    False,      -1 },
+        { "Transmission-gtk", NULL,      NULL,                 1 << 1,    False,      -1 },
+        { "Pidgin",           NULL,      NULL,                 1 << 2,    False,      -1 },
+        { "Skype",            NULL,      NULL,                 1 << 2,    True,       -1 },
+        { "FBReader",         NULL,      NULL,                 1 << 3,    True,       -1 },
+        { "Xsane",            NULL,      NULL,                 1 << 3,    True,       -1 },
+	    { "Gimp",             NULL,      NULL,                 1 << 4,    False,      -1 },
+		{ "Audacious",        NULL,      NULL,                 0,         True,       -1 },
+        { "Galculator",       NULL,      NULL,                 0,         True,       -1 },
+        { "Lxappearance",     NULL,      NULL,                 0,         True,       -1 },
+        { "MPlayer",          NULL,      NULL,                 0,         True,       -1 },
+        { "Nitrogen",         NULL,      NULL,                 0,         True,       -1 },
+        { "Thunar",           NULL,      NULL,                 0,         True,       -1 },
+        { "Vlc",              NULL,      NULL,                 0,         True,       -1 },
+        { "Zenity",           NULL,      NULL,                 0,         True,       -1 },
+        {  NULL,              NULL,     "shutdown-dialog.py",  0,         True,       -1 },
+};
+
+/* key definitions */
+#define MODKEY Mod1Mask
+#define TAGKEYS(KEY,TAG) \
+	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
+/* commands */
+static const char *dmenucmd[]      = { "dmenu-launch", NULL };
+static const char *termcmd[]       = { "urxvtc", NULL };
+static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
+static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
+static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor.sh", NULL };
+static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
+static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle",  NULL };
+static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
+static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "2dB+",  NULL };
+static const char *shutdowncmd[]   = { "/home/ok/Scripts/shutdown-dialog.py", NULL };
+static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "/home/ok/.tmux/conf", NULL };
+static const char *mccmd[]         = { "urxvtc", "-e", "/home/ok/Scripts/mc.sh", NULL };
+static const char *operacmd[]      = { "/home/ok/Scripts/opera.sh", NULL };
+static const char *pcmanfmcmd[]    = { "pcmanfm", "/home/ok", NULL };
+static const char *pidgincmd[]     = { "pidgin", NULL };
+static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "wlan0", NULL };
+static const char *zimcmd[]        = { "zim", NULL };
+static const char *newscmd[]       = { "urxvtc", "-e", "newsbeuter", NULL };
+static const char *htopcmd[]       = { "urxvtc", "-e", "htop", NULL };
+static const char *mpdcmd[]        = { "urxvtc", "-e", "/home/ok/Scripts/music.sh", NULL };
+static const char *mpdplaycmd[]    = { "mpc", "play", NULL };
+static const char *mpdpausecmd[]   = { "mpc", "pause", NULL };
+static const char *mpdnextcmd[]    = { "mpc", "next", NULL };
+static const char *mpdprevcmd[]    = { "mpc", "prev", NULL };
+static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
+static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
+static const char *stardictcmd[]   = { "stardict", NULL };
+static const char *menucmd[]       = { "9menu", "-popup", "-teleport", "-file", "/home/ok/.config/9menu/9menurc", "-bg", normbgcolor, "-fg", normfgcolor, "-font", "-*-*-*-*-*-*-*-*-*-*-*-*-*-4", NULL };
+static const char *exitmenucmd[]   = { "killall", "9menu", NULL };
+
+#include "push.c"
+#include "cycle.c"
+static Key keys[] = {
+	/* modifier              key                       function        argument */
+	{ 0,                     XK_Menu,                  spawn,          {.v = dmenucmd } },
+    { 0,                     XF86XK_Display,           spawn,          {.v = monitorcmd } },
+    { 0,                     XF86XK_Launch1,           spawn,          {.v = screenoffcmd } },
+    { 0,                     XF86XK_AudioMute,         spawn,          {.v = voltogglecmd } },
+    { 0,                     XF86XK_AudioLowerVolume,  spawn,          {.v = voldowncmd } },
+    { 0,                     XF86XK_AudioRaiseVolume,  spawn,          {.v = volupcmd } },
+    { 0,                     XF86XK_PowerOff,          spawn,          {.v = shutdowncmd } },
+    { Mod4Mask,              XK_t,                     spawn,          {.v = tmuxcmd } },
+    { Mod4Mask,              XK_m,                     spawn,          {.v = mccmd } },
+    { Mod4Mask,              XK_o,                     spawn,          {.v = operacmd } },
+    { Mod4Mask,              XK_p,                     spawn,          {.v = pcmanfmcmd } },
+    { Mod4Mask,              XK_w,                     spawn,          {.v = wificmd } },
+    { Mod4Mask,              XK_n,                     spawn,          {.v = zimcmd } },
+    { Mod4Mask,              XK_i,                     spawn,          {.v = pidgincmd } },
+    { Mod4Mask,              XK_r,                     spawn,          {.v = newscmd } },
+    { MODKEY|ControlMask,    XK_Delete,                spawn,          {.v = htopcmd } },
+    { Mod4Mask,              XK_h,                     spawn,          {.v = mpdcmd } },
+	{ Mod4Mask,              XK_s,                     spawn,          {.v = stardictcmd } },
+    { Mod4Mask,              XK_Up,                    spawn,          {.v = mpdplaycmd } },
+    { Mod4Mask,              XK_Down,                  spawn,          {.v = mpdpausecmd } },
+    { Mod4Mask,              XK_Right,                 spawn,          {.v = mpdnextcmd } },
+    { Mod4Mask,              XK_Left,                  spawn,          {.v = mpdprevcmd } },
+    { Mod4Mask,              XK_Escape,                spawn,          {.v = mpdstopcmd } },
+	{ MODKEY,                XK_Return,                spawn,          {.v = termcmd } },
+    { MODKEY|ShiftMask,      XK_e,                     spawn,          {.v = logoutcmd } },
+    { 0,                     XK_F12,                   togglescratch,  {.v = scratchpadcmd} },
+	{ MODKEY|ShiftMask,      XK_r,                     spawn,          {.v = reloadcmd} },
+	{ MODKEY,                XK_Down,                  focusstack,     {.i = +1 } },
+	{ MODKEY,                XK_Up,                    focusstack,     {.i = -1 } },
+	{ MODKEY,                XK_Left,                  setmfact,       {.f = -0.01} },
+	{ MODKEY,                XK_Right,                 setmfact,       {.f = +0.01} },
+	{ MODKEY|ShiftMask,      XK_Return,                zoom,           {0} },
+	{ Mod1Mask,              XK_Tab,                   view,           {0} },
+	{ Mod1Mask,              XK_F4,                    killclient,     {0} },
+    { MODKEY|ShiftMask,      XK_Left,                  incnmaster,     {.i = +1 } },
+    { MODKEY|ShiftMask,      XK_Right,                 incnmaster,     {.i = -1 } },
+    { MODKEY|ShiftMask,      XK_Down,                  pushdown,       {0} },
+    { MODKEY|ShiftMask,      XK_Up,                    pushup,         {0} },
+	{ MODKEY,                XK_t,                     setlayout,      {.v = &layouts[0]} },
+    { MODKEY,                XK_b,                     setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                XK_f,                     setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                XK_m,                     setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                XK_g,                     setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                XK_space,                 setlayout,      {0} },
+	{ MODKEY|ShiftMask,      XK_space,                 togglefloating, {0} },
+	{ MODKEY,                XK_eacute,                view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,      XK_eacute,                tag,            {.ui = ~0 } },
+    { MODKEY|ControlMask,    XK_Left,                  cycle,          {.i = -1 } },
+    { MODKEY|ControlMask,    XK_Right,                 cycle,          {.i = +1 } },
+	TAGKEYS(                 XK_plus,                                  0)
+	TAGKEYS(                 XK_ecaron,                                1)
+	TAGKEYS(                 XK_scaron,                                2)
+	TAGKEYS(                 XK_ccaron,                                3)
+	TAGKEYS(                 XK_rcaron,                                4)
+	TAGKEYS(                 XK_zcaron,                                5)
+	TAGKEYS(                 XK_yacute,                                6)
+	TAGKEYS(                 XK_aacute,                                7)
+	TAGKEYS(                 XK_iacute,                                8)
+};
+
+/* button definitions */
+/* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+static Button buttons[] = {
+	/* click                event mask      button          function        argument */
+	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,              Button3,        spawn,          {.v = menucmd } },
+	{ ClkWinTitle,          0,              Button1,        spawn,          {.v = exitmenucmd } },
+	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkTagBar,            0,              Button1,        view,           {0} },
+	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+	{ ClkRootWin,	     	0,		        Button3,	    spawn,		    {.v =menucmd } },
+	{ ClkRootWin,	     	0,		        Button1,	    spawn,		    {.v =exitmenucmd } },
+};
+
