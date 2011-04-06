@@ -2,22 +2,27 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const char font[]            = "envy code r 9";
-static const char normbordercolor[] = "#212121";
-static const char normbgcolor[]     = "#121212";
-static const char normfgcolor[]     = "#696969";
-static const char selbordercolor[]  = "#696969";
-static const char selbgcolor[]      = "#121212";
-static const char selfgcolor[]      = "#e0e0e0";
-static const char urgbordercolor[]  = "#bf4d80";
-static const char urgbgcolor[]      = "#121212";
-static const char urgfgcolor[]      = "#bf4d80";
+#define NUMCOLORS 8 
+static const char colors[NUMCOLORS][ColLast][8] = {
+// border foreground background
+{ "#212121", "#696969", "#121212" }, // 0 = normal
+{ "#696969", "#E0E0E0", "#121212" }, // 1 = selected
+{ "#212121", "#BF4D80", "#121212" }, // 2 = red
+{ "#212121", "#53A6A6", "#121212" }, // 3 = green
+{ "#212121", "#A270A3", "#121212" }, // 4 = yellow
+{ "#212121", "#6096BF", "#121212" }, // 5 = cyan
+{ "#212121", "#E0E0E0", "#121212" }, // 6 = white
+{ "#212121", "#E0E0E0", "#121212" }, // 7 = white
+};
+static const char font[]            = "terminus 9";
 static const unsigned int borderpx  = 1;                /* border pixel of windows */
 static const unsigned int snap      = 10;               /* snap pixel */
-static const unsigned int gappx     = 2;
+static const unsigned int gappx     = 0;
 static const Bool showbar           = True;             /* False means no bar */
 static const Bool topbar            = True;             /* False means bottom bar */
 static const char scratchpadname[]  = "Scratchpad";
+static const Bool systray_enable    = True;
+static const int systray_spacing    = 2;
 
 /* layout(s) */
 static const float mfact      = 0.60;     /* factor of master area size [0.05..0.95] */
@@ -107,7 +112,7 @@ static const char *mpdprevcmd[]    = { "mpc", "prev", NULL };
 static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
 static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
 static const char *stardictcmd[]   = { "stardict", NULL };
-static const char *menucmd[]       = { "9menu", "-popup", "-teleport", "-file", "/home/ok/.config/9menu/9menurc", "-bg", normbgcolor, "-fg", normfgcolor, "-font", "-*-*-*-*-*-*-*-*-*-*-*-*-*-4", NULL };
+static const char *menucmd[]       = { "9menu", "-popup", "-teleport", "-file", "/home/ok/.config/9menu/9menurc", "-font", "-*-*-*-*-*-*-*-*-*-*-*-*-*-4", NULL };
 static const char *exitmenucmd[]   = { "killall", "9menu", NULL };
 
 #include "push.c"
@@ -140,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY,                XK_Return,                spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,      XK_e,                     spawn,          {.v = logoutcmd } },
     { 0,                     XK_F12,                   togglescratch,  {.v = scratchpadcmd} },
+	{ MODKEY,                XK_s,                     togglebar,      {0} },
 	{ MODKEY|ShiftMask,      XK_r,                     spawn,          {.v = reloadcmd} },
 	{ MODKEY,                XK_Down,                  focusstack,     {.i = +1 } },
 	{ MODKEY,                XK_Up,                    focusstack,     {.i = -1 } },

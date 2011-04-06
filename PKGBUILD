@@ -21,6 +21,8 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         02-dwm-5.8.2-pertag2.diff
         03-dwm-5.8.2-scratchpad-stay.diff
         04-dwm-5.8.2-uselessgaps.diff
+		05-dwm-5.8.2-systray.diff
+		06-dwm-5.8.2-statuscolors.diff
         pidgin-grid.c
         nbstack.c
         push.c
@@ -33,6 +35,8 @@ build() {
   patch < ../02-dwm-5.8.2-pertag2.diff
   patch -p1 < ../03-dwm-5.8.2-scratchpad-stay.diff
   patch -p1 < ../04-dwm-5.8.2-uselessgaps.diff
+  patch -p1 < ../05-dwm-5.8.2-systray.diff
+  patch < ../06-dwm-5.8.2-statuscolors.diff
   cp $srcdir/config.h config.h
   cp $srcdir/pidgin-grid.c pidgin-grid.c
   cp $srcdir/nbstack.c nbstack.c
