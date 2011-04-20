@@ -71,7 +71,7 @@
 -			col = m == selmon ? dc.sel : dc.norm;
 -			drawtext(m->sel->name, col, False);
 -			drawsquare(m->sel->isfixed, m->sel->isfloating, False, col);
-+			col = m == selmon ? dc.colors[0] : dc.colors[3];
++			col = m == selmon ? dc.colors[1] : dc.colors[3];
 +			drawtext(m->sel->name, col, True);
 +			drawsquare(m->sel->isfixed, m->sel->isfloating, col);
  		}
