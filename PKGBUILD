@@ -35,7 +35,7 @@ build() {
   patch -Np1 -i ../01-dwm-5.8.2-pango.diff
   patch < ../02-dwm-5.8.2-pertag2.diff
   patch -p1 < ../03-dwm-5.8.2-scratchpad-stay.diff
-  patch -p1 < ../04-dwm-5.8.2-uselessgaps.diff
+#  patch -p1 < ../04-dwm-5.8.2-uselessgaps.diff
   patch -p1 < ../05-dwm-5.8.2-systray.diff
   patch < ../06-dwm-5.8.2-statuscolors.diff
   cp $srcdir/config.h config.h
