@@ -13,12 +13,9 @@ static const char colors[NUMCOLORS][ColLast][8] = {
 static const char font[]            = "terminus 9";
 static const unsigned int borderpx  = 1;                /* border pixel of windows */
 static const unsigned int snap      = 10;               /* snap pixel */
-static const unsigned int gappx     = 3;
 static const Bool showbar           = True;             /* False means no bar */
 static const Bool topbar            = True;             /* False means bottom bar */
 static const char scratchpadname[]  = "Scratchpad";
-static const Bool systray_enable    = False;
-static const int systray_spacing    = 1;
 
 /* layout(s) */
 static const float mfact      = 0.50;     /* factor of master area size [0.05..0.95] */
