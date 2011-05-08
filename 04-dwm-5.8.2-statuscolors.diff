@@ -212,16 +212,3 @@
  	if(setfocus)
  		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
  }
-@@ -2264,10 +2299,10 @@ Bool systray_acquire(void) {
-     wattr.event_mask        = ButtonPressMask | ExposureMask;
-     wattr.override_redirect = True;
-     wattr.background_pixmap = ParentRelative;
--    wattr.background_pixel  = dc.norm[ColBG];
-+    wattr.background_pixel  = dc.colors[0][ColBG];
-     
- 
--    traywin = XCreateSimpleWindow(dpy, root, 0, 0, 1, 1, 0, 0, dc.norm[ColBG]);
-+    traywin = XCreateSimpleWindow(dpy, root, 0, 0, 1, 1, 0, 0, dc.colors[0][ColBG]);
-     
- 
-     XChangeWindowAttributes(dpy, traywin, CWEventMask | CWOverrideRedirect | CWBackPixel, &wattr);
