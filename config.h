@@ -10,10 +10,10 @@ static const char colors[NUMCOLORS][ColLast][8] = {
 { "#212121", "#BF4D80", "#121212" }, // 2 = urgent
 
 };
-static const char font[]            = "envy code r 9";
+static const char font[]            = "terminus 9";
 static const unsigned int borderpx  = 1;                /* border pixel of windows */
 static const unsigned int snap      = 10;               /* snap pixel */
-static const unsigned int gappx     = 0;
+static const unsigned int gappx     = 3;
 static const Bool showbar           = True;             /* False means no bar */
 static const Bool topbar            = True;             /* False means bottom bar */
 static const char scratchpadname[]  = "Scratchpad";
@@ -21,7 +21,7 @@ static const Bool systray_enable    = False;
 static const int systray_spacing    = 1;
 
 /* layout(s) */
-static const float mfact      = 0.60;     /* factor of master area size [0.05..0.95] */
+static const float mfact      = 0.50;     /* factor of master area size [0.05..0.95] */
 static const Bool resizehints = False;    /* True means respect size hints in tiled resizals */
 static const int nmaster      = 1;        /* default number of clients in the master area */
 
@@ -33,23 +33,22 @@ static const Layout layouts[] = {
     { "TTT",      nbstack },
 	{ "><>",      NULL },     /* no layout function means floating behavior */
 	{ "[ ]",      monocle },
-    { "[+]",      pidgin },
+    { "###",      pidgin },
 
 };
 
 /* tagging */
 static const Tag tags[] = {
         /* name       layout           mfact    nmaster */
-        { "term",     &layouts[3],     -1,      -1 },
-        { "net",      &layouts[3],     -1,      -1 },
-        { "im",       &layouts[4],   0.25,      -1 },
-        { "misc",     &layouts[2],     -1,      -1 },
-		{ "note",     &layouts[3],     -1,      -1 },
+        { "1",        &layouts[3],     -1,      -1 },
+        { "2",        &layouts[3],     -1,      -1 },
+        { "3",        &layouts[4],   0.25,      -1 },
+        { "4",        &layouts[2],     -1,      -1 },
 };
 
 static const Rule rules[] = {
     	/* class              instance  title                  tags mask  isfloating  monitor */
-        {  NULL,              NULL,     "tmux",                1 << 0,    False,      -1 },
+		{ "Google-chrome",    NULL,      NULL,                 1 << 1,    False,      -1 },
         { "Keepassx",         NULL,      NULL,                 1 << 1,    True,       -1 },
 		{  NULL,              NULL,     "newsbeuter",          1 << 1,    False,      -1 },
     	{ "Opera",            NULL,      NULL,                 1 << 1,    False,      -1 },
@@ -59,12 +58,10 @@ static const Rule rules[] = {
         { "FBReader",         NULL,      NULL,                 1 << 3,    True,       -1 },
 	    { "Gimp",             NULL,      NULL,                 1 << 3,    True,       -1 },
         { "Xsane",            NULL,      NULL,                 1 << 3,    True,       -1 },
-		{ "Zim",              NULL,      NULL,                 1 << 4,    False,      -1 },
 		{ "Audacious",        NULL,      NULL,                 0,         True,       -1 },
-        { "Galculator",       NULL,      NULL,                 0,         True,       -1 },
         { "Lxappearance",     NULL,      NULL,                 0,         True,       -1 },
-        { "MPlayer",          NULL,      NULL,                 0,         True,       -1 },
         { "Nitrogen",         NULL,      NULL,                 0,         True,       -1 },
+        { "Qalculate-gtk",    NULL,      NULL,                 0,         True,       -1 },
         { "Thunar",           NULL,      NULL,                 0,         True,       -1 },
         { "Vlc",              NULL,      NULL,                 0,         True,       -1 },
         { "Zenity",           NULL,      NULL,                 0,         True,       -1 },
@@ -87,7 +84,7 @@ static const char *dmenucmd[]      = { "dmenu-launch", NULL };
 static const char *termcmd[]       = { "urxvtc", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
-static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor.sh", NULL };
+static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
 static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
 static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle",  NULL };
 static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
@@ -105,6 +102,7 @@ static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
 static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
 static const char *stardictcmd[]   = { "stardict", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
+static const char *chromecmd[]   = { "/home/ok/Scripts/chrome.sh", NULL };
 
 #include "push.c"
 #include "moveresize.c"
@@ -120,6 +118,7 @@ static Key keys[] = {
     { Mod4Mask,                      XK_t,                     spawn,          {.v = tmuxcmd } },
     { Mod4Mask,                      XK_m,                     spawn,          {.v = mccmd } },
     { Mod4Mask,                      XK_o,                     spawn,          {.v = operacmd } },
+	{ Mod4Mask,                      XK_c,                     spawn,          {.v = chromecmd } },
 	{ Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
     { Mod4Mask,                      XK_w,                     spawn,          {.v = wificmd } },
     { Mod4Mask,                      XK_i,                     spawn,          {.v = pidgincmd } },
