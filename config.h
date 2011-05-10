@@ -99,7 +99,7 @@ static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
 static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
 static const char *stardictcmd[]   = { "stardict", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
-static const char *chromecmd[]   = { "/home/ok/Scripts/chrome.sh", NULL };
+static const char *chromecmd[]     = { "/home/ok/Scripts/chrome.sh", NULL };
 
 #include "push.c"
 #include "moveresize.c"
