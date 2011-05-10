@@ -26,7 +26,7 @@ diff -up dwm-5.8.2/dwm.c dwm-5.8.2-scratchpad/dwm.c
 +    c->tags = scratchpadtag;
 +    c->isfloating = True;
 +    c->x = (c->mon->mw - c->w) - 10;
-+    c->y = 25;
++    c->y = 22;
 +    c->mon->tagset[c->mon->seltags] |= c->tags;
 +  } else { /* make sure non-scratchpads stay out of scratchpadtag */
 +    c->tags &= TAGMASK;
