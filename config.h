@@ -59,6 +59,7 @@ static const Rule rules[] = {
         { "Lxappearance",     NULL,      NULL,                 0,         True,       -1 },
         { "Nitrogen",         NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate-gtk",    NULL,      NULL,                 0,         True,       -1 },
+		{ "Qalculate",        NULL,      NULL,                 0,         True,       -1 },
         { "Thunar",           NULL,      NULL,                 0,         True,       -1 },
         { "Vlc",              NULL,      NULL,                 0,         True,       -1 },
         { "Zenity",           NULL,      NULL,                 0,         True,       -1 },
