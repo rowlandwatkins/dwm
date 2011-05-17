@@ -16,7 +16,7 @@ static const unsigned int snap      = 10;               /* snap pixel */
 static const Bool showbar           = True;             /* False means no bar */
 static const Bool topbar            = True;             /* False means bottom bar */
 static const char scratchpadname[]  = "Scratchpad";
-static Bool useicons                = True;     /* False means use ascii symbols */
+static Bool useicons                = True;             /* False means use ascii symbols */
 
 /* layout(s) */
 static const float mfact      = 0.50;     /* factor of master area size [0.05..0.95] */
@@ -45,25 +45,25 @@ static const Tag tags[] = {
 };
 
 static const Rule rules[] = {
-    	/* class              instance  title                  tags mask  isfloating  monitor */
-		{  NULL,              NULL,     "tmux",                1 << 0,    False,      -1 },
-		{ "Google-chrome",    NULL,      NULL,                 1 << 1,    False,      -1 },
-        { "Keepassx",         NULL,      NULL,                 1 << 1,    True,       -1 },
-        { "Transmission-gtk", NULL,      NULL,                 1 << 1,    False,      -1 },
-        { "Pidgin",           NULL,      NULL,                 1 << 2,    False,      -1 },
-        { "Skype",            NULL,      NULL,                 1 << 2,    True,       -1 },
-        { "FBReader",         NULL,      NULL,                 1 << 3,    True,       -1 },
-	    { "Gimp",             NULL,      NULL,                 1 << 3,    True,       -1 },
-        { "Xsane",            NULL,      NULL,                 1 << 3,    True,       -1 },
-		{ "Audacious",        NULL,      NULL,                 0,         True,       -1 },
-        { "Lxappearance",     NULL,      NULL,                 0,         True,       -1 },
-        { "Nitrogen",         NULL,      NULL,                 0,         True,       -1 },
-        { "Qalculate-gtk",    NULL,      NULL,                 0,         True,       -1 },
-		{ "Qalculate",        NULL,      NULL,                 0,         True,       -1 },
-        { "Thunar",           NULL,      NULL,                 0,         True,       -1 },
-        { "Vlc",              NULL,      NULL,                 0,         True,       -1 },
-        { "Zenity",           NULL,      NULL,                 0,         True,       -1 },
-        {  NULL,              NULL,     "shutdown-dialog.py",  0,         True,       -1 },
+    	/* class              instance  title                                    tags mask  isfloating  monitor */
+		{  NULL,              NULL,     "tmux",                                  1 << 0,    False,      -1 },
+		{ "Google-chrome",    NULL,      NULL,                                   1 << 1,    False,      -1 },
+        { "Keepassx",         NULL,      NULL,                                   1 << 1,    True,       -1 },
+        { "Transmission-gtk", NULL,      NULL,                                   1 << 1,    False,      -1 },
+        { "Pidgin",           NULL,      NULL,                                   1 << 2,    False,      -1 },
+        { "Skype",            NULL,      NULL,                                   1 << 2,    True,       -1 },
+        { "FBReader",         NULL,      NULL,                                   1 << 3,    True,       -1 },
+	    { "Gimp",             NULL,      NULL,                                   1 << 3,    True,       -1 },
+        { "Xsane",            NULL,      NULL,                                   1 << 3,    True,       -1 },
+		{ "Audacious",        NULL,      NULL,                                   0,         True,       -1 },
+        { "Lxappearance",     NULL,      NULL,                                   0,         True,       -1 },
+        { "Nitrogen",         NULL,      NULL,                                   0,         True,       -1 },
+        { "Qalculate-gtk",    NULL,      NULL,                                   0,         True,       -1 },
+		{ "Qalculate",        NULL,      NULL,                                   0,         True,       -1 },
+        { "Thunar",           NULL,      "Bulk Rename - Rename Multiple Files",  0,         True,       -1 },
+        { "Vlc",              NULL,      NULL,                                   0,         True,       -1 },
+        { "Zenity",           NULL,      NULL,                                   0,         True,       -1 },
+        {  NULL,              NULL,     "shutdown-dialog.py",                    0,         True,       -1 },
 };
 
 /* key definitions */
@@ -78,46 +78,49 @@ static const Rule rules[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[]      = { "dmenu-launch", NULL };
-static const char *termcmd[]       = { "urxvtc", NULL };
-static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
-static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
-static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
-static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
-static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle",  NULL };
-static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
-static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "2dB+",  NULL };
-static const char *shutdowncmd[]   = { "/home/ok/Scripts/shutdown-dialog.py", NULL };
-static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "/home/ok/Scripts/tmux.sh", NULL };
-static const char *pidgincmd[]     = { "pidgin", NULL };
-static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "wlan0", NULL };
-static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
-static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
-static const char *stardictcmd[]   = { "stardict", NULL };
-static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
 static const char *chromecmd[]     = { "/home/ok/Scripts/chrome.sh", NULL };
+static const char *dmenucmd[]      = { "dmenu-launch", NULL };
+static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
+static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
+static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
+static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
+static const char *pidgincmd[]     = { "pidgin", NULL };
+static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
+static const char *runcmd[]        = { "gmrun", NULL };
+static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
+static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
+static const char *shutdowncmd[]   = { "/home/ok/Scripts/shutdown-dialog.py", NULL };
+static const char *stardictcmd[]   = { "stardict", NULL };
+static const char *termcmd[]       = { "urxvtc", NULL };
+static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "/home/ok/Scripts/tmux.sh", NULL };
+static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
+static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle",  NULL };
+static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "2dB+",  NULL };
+static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "wlan0", NULL };
 
 #include "push.c"
 static Key keys[] = {
    /* modifier                       key                       function        argument */
-	{ 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
-    { 0,                             XF86XK_Display,           spawn,          {.v = monitorcmd } },
-    { 0,                             XF86XK_Launch1,           spawn,          {.v = screenoffcmd } },
-    { 0,                             XF86XK_AudioMute,         spawn,          {.v = voltogglecmd } },
-    { 0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = voldowncmd } },
-    { 0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volupcmd } },
-    { 0,                             XF86XK_PowerOff,          spawn,          {.v = shutdowncmd } },
-    { Mod4Mask,                      XK_t,                     spawn,          {.v = tmuxcmd } },
 	{ Mod4Mask,                      XK_c,                     spawn,          {.v = chromecmd } },
-	{ Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
-    { Mod4Mask,                      XK_w,                     spawn,          {.v = wificmd } },
-    { Mod4Mask,                      XK_i,                     spawn,          {.v = pidgincmd } },
-	{ Mod4Mask,                      XK_s,                     spawn,          {.v = stardictcmd } },
-    { Mod4Mask,                      XK_Escape,                spawn,          {.v = mpdstopcmd } },
-	{ MODKEY,                        XK_Return,                spawn,          {.v = termcmd } },
+	{ 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,              XK_e,                     spawn,          {.v = logoutcmd } },
-    { 0,                             XK_F12,                   togglescratch,  {.v = scratchpadcmd} },
+	{ Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
+    { 0,                             XF86XK_Display,           spawn,          {.v = monitorcmd } },
+    { Mod4Mask,                      XK_Escape,                spawn,          {.v = mpdstopcmd } },
+    { Mod4Mask,                      XK_i,                     spawn,          {.v = pidgincmd } },
 	{ MODKEY|ShiftMask,              XK_r,                     spawn,          {.v = reloadcmd} },
+	{ MODKEY,                        XK_F2,                    spawn,          {.v = runcmd} },
+    { 0,                             XK_F12,                   togglescratch,  {.v = scratchpadcmd} },
+    { 0,                             XF86XK_Launch1,           spawn,          {.v = screenoffcmd } },
+    { 0,                             XF86XK_PowerOff,          spawn,          {.v = shutdowncmd } },
+	{ Mod4Mask,                      XK_s,                     spawn,          {.v = stardictcmd } },
+	{ MODKEY,                        XK_Return,                spawn,          {.v = termcmd } },
+    { Mod4Mask,                      XK_t,                     spawn,          {.v = tmuxcmd } },
+    { 0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = voldowncmd } },
+    { 0,                             XF86XK_AudioMute,         spawn,          {.v = voltogglecmd } },
+    { 0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volupcmd } },
+    { Mod4Mask,                      XK_w,                     spawn,          {.v = wificmd } },
+
 	{ MODKEY,                        XK_Down,                  focusstack,     {.i = +1 } },
 	{ MODKEY,                        XK_Up,                    focusstack,     {.i = -1 } },
 	{ MODKEY,                        XK_Left,                  setmfact,       {.f = -0.01} },
