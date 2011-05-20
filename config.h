@@ -10,7 +10,7 @@ static const char colors[NUMCOLORS][ColLast][8] = {
 { "#212121", "#BF4D80", "#121212" }, // 2 = urgent
 };
 
-static const char font[]            = "terminus 9";
+static const char font[]            = "arial bold 9";
 static const unsigned int borderpx  = 1;                /* border pixel of windows */
 static const unsigned int snap      = 10;               /* snap pixel */
 static const Bool showbar           = True;             /* False means no bar */
@@ -40,7 +40,7 @@ static const Tag tags[] = {
         /* name       layout           mfact    nmaster */
         { "1",        &layouts[3],     -1,      -1 },
         { "2",        &layouts[3],     -1,      -1 },
-        { "3",        &layouts[4],   0.25,      -1 },
+        { "3",        &layouts[4],   0.20,      -1 },
         { "4",        &layouts[2],     -1,      -1 },
 };
 
@@ -154,10 +154,10 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+#include "cycle_layout.c"
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button1,        focusstack,     {.i = +1 } },
 	{ ClkWinTitle,          0,              Button3,        focusstack,     {.i = -1 } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
