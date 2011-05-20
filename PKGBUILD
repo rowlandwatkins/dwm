@@ -25,6 +25,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         pidgin-grid.c
         nbstack.c
         push.c
+        cycle_layout.c
         cycle.c)
 
 build() {
@@ -39,6 +40,7 @@ build() {
   cp $srcdir/pidgin-grid.c pidgin-grid.c
   cp $srcdir/nbstack.c nbstack.c
   cp $srcdir/push.c push.c
+  cp $srcdir/cycle_layout.c cycle_layout.c
   cp $srcdir/cycle.c cycle.c
 
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 || return 1
