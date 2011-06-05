@@ -10,7 +10,7 @@ static const char colors[NUMCOLORS][ColLast][8] = {
 { "#212121", "#BF4D80", "#121212" }, // 2 = urgent
 };
 
-static const char font[]            = "arial bold 9";
+static const char font[]            = "terminus 9";
 static const unsigned int borderpx  = 1;                /* border pixel of windows */
 static const unsigned int snap      = 10;               /* snap pixel */
 static const Bool showbar           = True;             /* False means no bar */
@@ -48,6 +48,7 @@ static const Rule rules[] = {
     	/* class              instance  title                                    tags mask  isfloating  monitor */
 		{  NULL,              NULL,     "tmux",                                  1 << 0,    False,      -1 },
 		{ "Google-chrome",    NULL,      NULL,                                   1 << 1,    False,      -1 },
+        { "OperaNext",        NULL,      NULL,                                   1 << 1,    False,      -1 },
         { "Keepassx",         NULL,      NULL,                                   1 << 1,    True,       -1 },
         { "Transmission-gtk", NULL,      NULL,                                   1 << 1,    False,      -1 },
         { "Pidgin",           NULL,      NULL,                                   1 << 2,    False,      -1 },
@@ -79,6 +80,7 @@ static const Rule rules[] = {
 
 /* commands */
 static const char *chromecmd[]     = { "/home/ok/Scripts/chrome.sh", NULL };
+static const char *operacmd[]      = { "/home/ok/Scripts/opera.sh", NULL };
 static const char *dmenucmd[]      = { "dmenu-launch", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
@@ -102,6 +104,7 @@ static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "w
 static Key keys[] = {
    /* modifier                       key                       function        argument */
 	{ Mod4Mask,                      XK_c,                     spawn,          {.v = chromecmd } },
+    { Mod4Mask,                      XK_o,                     spawn,          {.v = operacmd } },
 	{ 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,              XK_e,                     spawn,          {.v = logoutcmd } },
 	{ Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
