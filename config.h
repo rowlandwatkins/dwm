@@ -32,7 +32,6 @@ static const Layout layouts[] = {
 	{ "/home/ok/Build/dwm/icons/float.xbm",    "><>",      NULL },     /* no layout function means floating behavior */
 	{ "/home/ok/Build/dwm/icons/monocle.xbm",  "[ ]",      monocle },
     { "/home/ok/Build/dwm/icons/grid.xbm",     "###",      pidgin },
-
 };
 
 /* tagging */
@@ -40,17 +39,15 @@ static const Tag tags[] = {
         /* name       layout           mfact    nmaster */
         { "1",        &layouts[3],     -1,      -1 },
         { "2",        &layouts[3],     -1,      -1 },
-        { "3",        &layouts[4],   0.20,      -1 },
+        { "3",        &layouts[4],     0.20,    -1 },
         { "4",        &layouts[2],     -1,      -1 },
 };
 
 static const Rule rules[] = {
     	/* class              instance  title                                    tags mask  isfloating  monitor */
 		{  NULL,              NULL,     "tmux",                                  1 << 0,    False,      -1 },
-		{ "Google-chrome",    NULL,      NULL,                                   1 << 1,    False,      -1 },
         { "OperaNext",        NULL,      NULL,                                   1 << 1,    False,      -1 },
         { "Keepassx",         NULL,      NULL,                                   1 << 1,    True,       -1 },
-        { "Transmission-gtk", NULL,      NULL,                                   1 << 1,    False,      -1 },
         { "Pidgin",           NULL,      NULL,                                   1 << 2,    False,      -1 },
         { "Skype",            NULL,      NULL,                                   1 << 2,    True,       -1 },
         { "FBReader",         NULL,      NULL,                                   1 << 3,    True,       -1 },
@@ -64,7 +61,6 @@ static const Rule rules[] = {
         { "Qalculate-gtk",    NULL,      NULL,                                   0,         True,       -1 },
 		{ "Qalculate",        NULL,      NULL,                                   0,         True,       -1 },
         { "Thunar",           NULL,      "Bulk Rename - Rename Multiple Files",  0,         True,       -1 },
-        { "Vlc",              NULL,      NULL,                                   0,         True,       -1 },
         { "Zenity",           NULL,      NULL,                                   0,         True,       -1 },
         {  NULL,              NULL,     "shutdown-dialog.py",                    0,         True,       -1 },
 };
@@ -81,13 +77,11 @@ static const Rule rules[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *chromecmd[]     = { "/home/ok/Scripts/chrome.sh", NULL };
 static const char *operacmd[]      = { "/home/ok/Scripts/opera.sh", NULL };
 static const char *dmenucmd[]      = { "dmenu-launch", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
 static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
-static const char *mpdstopcmd[]    = { "mpc", "stop", NULL };
 static const char *pidgincmd[]     = { "pidgin", NULL };
 static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
 static const char *runcmd[]        = { "gmrun", NULL };
@@ -105,13 +99,11 @@ static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "w
 #include "push.c"
 static Key keys[] = {
    /* modifier                       key                       function        argument */
-	{ Mod4Mask,                      XK_c,                     spawn,          {.v = chromecmd } },
     { Mod4Mask,                      XK_o,                     spawn,          {.v = operacmd } },
 	{ 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,              XK_e,                     spawn,          {.v = logoutcmd } },
 	{ Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
     { 0,                             XF86XK_Display,           spawn,          {.v = monitorcmd } },
-    { Mod4Mask,                      XK_Escape,                spawn,          {.v = mpdstopcmd } },
     { Mod4Mask,                      XK_i,                     spawn,          {.v = pidgincmd } },
 	{ MODKEY|ShiftMask,              XK_r,                     spawn,          {.v = reloadcmd} },
 	{ MODKEY,                        XK_F2,                    spawn,          {.v = runcmd} },
