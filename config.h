@@ -37,24 +37,29 @@ static const Layout layouts[] = {
 /* tagging */
 static const Tag tags[] = {
         /* name       layout           mfact    nmaster */
-        { "1",        &layouts[3],     -1,      -1 },
-        { "2",        &layouts[3],     -1,      -1 },
-        { "3",        &layouts[4],     0.20,    -1 },
-        { "4",        &layouts[2],     -1,      -1 },
+        { "trm",      &layouts[3],     -1,      -1 },
+        { "web",      &layouts[3],     -1,      -1 },
+        { "doc",      &layouts[3],     -1,      -1 },
+        { "irc",      &layouts[4],     0.20,    -1 },
+        { "foo",      &layouts[2],     -1,      -1 },
 };
 
 static const Rule rules[] = {
     	/* class              instance  title                                    tags mask  isfloating  monitor */
 		{  NULL,              NULL,     "tmux",                                  1 << 0,    False,      -1 },
         { "OperaNext",        NULL,      NULL,                                   1 << 1,    False,      -1 },
-        { "Keepassx",         NULL,      NULL,                                   1 << 1,    True,       -1 },
-        { "Pidgin",           NULL,      NULL,                                   1 << 2,    False,      -1 },
-        { "Skype",            NULL,      NULL,                                   1 << 2,    True,       -1 },
-        { "FBReader",         NULL,      NULL,                                   1 << 3,    True,       -1 },
-	    { "Gimp",             NULL,      NULL,                                   1 << 3,    True,       -1 },
-        { "Xsane",            NULL,      NULL,                                   1 << 3,    True,       -1 },
+        { "Opera",            NULL,      NULL,                                   1 << 1,    False,      -1 },
+        { "Comix",            NULL,      NULL,                                   1 << 2,    False,      -1 },
+        { "FBReader",         NULL,      NULL,                                   1 << 2,    False,      -1 },
+		{  NULL,              NULL,     "irssi",                                 1 << 3,    False,      -1 },
+        { "Pidgin",           NULL,      NULL,                                   1 << 3,    False,      -1 },
+        { "Skype",            NULL,      NULL,                                   1 << 3,    True,       -1 },
+	    { "Gimp",             NULL,      NULL,                                   1 << 4,    True,       -1 },
+        { "Xsane",            NULL,      NULL,                                   1 << 4,    True,       -1 },
+        { "WorldOfGoo.bin32", NULL,      NULL,                                   1 << 4,    True,       -1 },
 		{ "Audacious",        NULL,      NULL,                                   0,         True,       -1 },
         { "Gnome-mplayer",    NULL,      NULL,                                   0,         True,       -1 },
+        { "Keepassx",         NULL,      NULL,                                   0,         True,       -1 },
         { "Lxappearance",     NULL,      NULL,                                   0,         True,       -1 },
         { "MPlayer",          NULL,      NULL,                                   0,         True,       -1 },
         { "Nitrogen",         NULL,      NULL,                                   0,         True,       -1 },
@@ -79,6 +84,7 @@ static const Rule rules[] = {
 /* commands */
 static const char *operacmd[]      = { "/home/ok/Scripts/opera.sh", NULL };
 static const char *dmenucmd[]      = { "dmenu-launch", NULL };
+static const char *irssicmd[]      = { "urxvtc", "-title", "irssi", "-e", "irssi", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
 static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
@@ -101,10 +107,11 @@ static Key keys[] = {
    /* modifier                       key                       function        argument */
     { Mod4Mask,                      XK_o,                     spawn,          {.v = operacmd } },
 	{ 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
+	{ Mod4Mask,                      XK_i,                     spawn,          {.v = irssicmd } },
     { MODKEY|ShiftMask,              XK_e,                     spawn,          {.v = logoutcmd } },
 	{ Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
     { 0,                             XF86XK_Display,           spawn,          {.v = monitorcmd } },
-    { Mod4Mask,                      XK_i,                     spawn,          {.v = pidgincmd } },
+    { Mod4Mask,                      XK_p,                     spawn,          {.v = pidgincmd } },
 	{ MODKEY|ShiftMask,              XK_r,                     spawn,          {.v = reloadcmd} },
 	{ MODKEY,                        XK_F2,                    spawn,          {.v = runcmd} },
     { 0,                             XK_F12,                   togglescratch,  {.v = scratchpadcmd} },
