@@ -40,7 +40,7 @@ static const Tag tags[] = {
         { "trm",      &layouts[3],     -1,      -1 },
         { "web",      &layouts[3],     -1,      -1 },
         { "doc",      &layouts[3],     -1,      -1 },
-        { "irc",      &layouts[4],     0.20,    -1 },
+        { "irc",      &layouts[4],     0.18,    -1 },
         { "foo",      &layouts[2],     -1,      -1 },
 };
 
