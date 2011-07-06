@@ -1,42 +1,43 @@
 /* See LICENSE file for copyright and license details. */
-#include <X11/XF86keysym.h>
+#include "nbstack.c"
+#include "pidgin-grid.c"
+#include "push.c"
+#include "X11/XF86keysym.h"
 
 /* appearance */
 #define NUMCOLORS 3
 static const char colors[NUMCOLORS][ColLast][8] = {
-// border     foreground background
-{ "#212121", "#696969", "#121212" }, // 0 = normal
-{ "#696969", "#E0E0E0", "#121212" }, // 1 = selected
-{ "#212121", "#BF4D80", "#121212" }, // 2 = urgent
+    // border     foreground background
+    { "#212121", "#696969", "#121212" }, // 0 = normal
+    { "#696969", "#E0E0E0", "#121212" }, // 1 = selected
+    { "#212121", "#BF4D80", "#121212" }, // 2 = urgent
 };
 
 static const char font[]            = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*";
-static const unsigned int borderpx  = 1;                /* border pixel of windows */
-static const unsigned int snap      = 10;               /* snap pixel */
-static const Bool showbar           = True;             /* False means no bar */
-static const Bool topbar            = True;             /* False means bottom bar */
+static const unsigned int borderpx  = 1;                // border pixel of windows
+static const unsigned int snap      = 10;               // snap pixel
+static const Bool showbar           = True;             // False means no bar
+static const Bool topbar            = True;             // False means bottom bar
+static Bool useicons                = True;             // False means use ascii symbols
 static const char scratchpadname[]  = "Scratchpad";
-static Bool useicons                = True;             /* False means use ascii symbols */
 
 /* layout(s) */
-static const float mfact      = 0.50;     /* factor of master area size [0.05..0.95] */
-static const Bool resizehints = False;    /* True means respect size hints in tiled resizals */
-static const int nmaster      = 1;        /* default number of clients in the master area */
+static const float mfact      = 0.50;     // factor of master area size [0.05..0.95]
+static const Bool resizehints = False;    // True means respect size hints in tiled resizals
+static const int nmaster      = 1;        // default number of clients in the master area
 
-#include "pidgin-grid.c"
-#include "nbstack.c"
 static const Layout layouts[] = {
-	/* icon                                     symbol     arrange function */
+	// icon                                     symbol     arrange function
 	{ "/home/ok/Build/dwm/icons/tile.xbm",     "[]=",      ntile },
     { "/home/ok/Build/dwm/icons/bstack.xbm",   "TTT",      nbstack },
-	{ "/home/ok/Build/dwm/icons/float.xbm",    "><>",      NULL },     /* no layout function means floating behavior */
+	{ "/home/ok/Build/dwm/icons/float.xbm",    "><>",      NULL },     // no layout function means floating behavior
 	{ "/home/ok/Build/dwm/icons/monocle.xbm",  "[ ]",      monocle },
     { "/home/ok/Build/dwm/icons/grid.xbm",     "###",      pidgin },
 };
 
 /* tagging */
 static const Tag tags[] = {
-        /* name       layout           mfact    nmaster */
+        // name       layout           mfact    nmaster
         { "trm",      &layouts[3],     -1,      -1 },
         { "web",      &layouts[3],     -1,      -1 },
         { "doc",      &layouts[3],     -1,      -1 },
@@ -44,8 +45,9 @@ static const Tag tags[] = {
         { "foo",      &layouts[2],     -1,      -1 },
 };
 
+/* window rules */
 static const Rule rules[] = {
-    	/* class                  instance  title                                   tags mask  isfloating  monitor */
+    	// class                  instance  title                                   tags mask  isfloating  monitor
 		{  NULL,                  NULL,     "tmux",                                 1 << 0,    False,      -1 },
         { "OperaNext",            NULL,      NULL,                                  1 << 1,    False,      -1 },
         { "Opera",                NULL,      NULL,                                  1 << 1,    False,      -1 },
@@ -104,9 +106,8 @@ static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle"
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "2dB+",  NULL };
 static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "wlan0", NULL };
 
-#include "push.c"
 static Key keys[] = {
-   /* modifier                       key                       function        argument */
+   // modifier                       key                       function        argument
     { Mod4Mask,                      XK_o,                     spawn,          {.v = operacmd } },
 	{ 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
 	{ Mod4Mask,                      XK_i,                     spawn,          {.v = irssicmd } },
@@ -159,10 +160,9 @@ static Key keys[] = {
 };
 
 /* button definitions */
-/* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-#include "cycle_layout.c"
+// click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin
 static Button buttons[] = {
-	/* click                event mask      button          function        argument */
+	// click                event mask      button          function        argument
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkWinTitle,          0,              Button1,        focusstack,     {.i = +1 } },
 	{ ClkWinTitle,          0,              Button3,        focusstack,     {.i = -1 } },

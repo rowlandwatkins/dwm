@@ -21,11 +21,10 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         02-dwm-5.8.2-scratchpad-stay.diff
         03-dwm-5.8.2-statuscolors.diff
 		04-dwm-5.8.2-xbm_layout_icons.diff
+		05-dwm-5.8.2-cflags.diff
         pidgin-grid.c
         nbstack.c
-        push.c
-        cycle_layout.c
-        cycle.c)
+        push.c)
 
 build() {
   cd $srcdir/dwm-$pkgver
@@ -34,12 +33,11 @@ build() {
   patch -p1 < ../02-dwm-5.8.2-scratchpad-stay.diff
   patch < ../03-dwm-5.8.2-statuscolors.diff
   patch < ../04-dwm-5.8.2-xbm_layout_icons.diff
+  patch < ../05-dwm-5.8.2-cflags.diff
   cp $srcdir/config.h config.h
   cp $srcdir/pidgin-grid.c pidgin-grid.c
   cp $srcdir/nbstack.c nbstack.c
   cp $srcdir/push.c push.c
-  cp $srcdir/cycle_layout.c cycle_layout.c
-  cp $srcdir/cycle.c cycle.c
 
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 || return 1
   make PREFIX=/usr DESTDIR=$pkgdir install || return 1
