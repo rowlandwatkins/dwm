@@ -11,17 +11,16 @@ pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
-depends=('libxinerama' 'pango')
+depends=('libxinerama')
 options=(zipman)
 conflicts=('dwm-pango')
 install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         config.h
-        01-dwm-5.8.2-pango.diff
-        02-dwm-5.8.2-pertag2.diff
-        03-dwm-5.8.2-scratchpad-stay.diff
-        04-dwm-5.8.2-statuscolors.diff
-		05-dwm-5.8.2-xbm_layout_icons.diff
+        01-dwm-5.8.2-pertag2.diff
+        02-dwm-5.8.2-scratchpad-stay.diff
+        03-dwm-5.8.2-statuscolors.diff
+		04-dwm-5.8.2-xbm_layout_icons.diff
         pidgin-grid.c
         nbstack.c
         push.c
@@ -31,11 +30,10 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 build() {
   cd $srcdir/dwm-$pkgver
 
-  patch -Np1 -i ../01-dwm-5.8.2-pango.diff
-  patch < ../02-dwm-5.8.2-pertag2.diff
-  patch -p1 < ../03-dwm-5.8.2-scratchpad-stay.diff
-  patch < ../04-dwm-5.8.2-statuscolors.diff
-  patch < ../05-dwm-5.8.2-xbm_layout_icons.diff
+  patch < ../01-dwm-5.8.2-pertag2.diff
+  patch -p1 < ../02-dwm-5.8.2-scratchpad-stay.diff
+  patch < ../03-dwm-5.8.2-statuscolors.diff
+  patch < ../04-dwm-5.8.2-xbm_layout_icons.diff
   cp $srcdir/config.h config.h
   cp $srcdir/pidgin-grid.c pidgin-grid.c
   cp $srcdir/nbstack.c nbstack.c

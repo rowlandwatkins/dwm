@@ -10,7 +10,7 @@ static const char colors[NUMCOLORS][ColLast][8] = {
 { "#212121", "#BF4D80", "#121212" }, // 2 = urgent
 };
 
-static const char font[]            = "terminus 9";
+static const char font[]            = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*";
 static const unsigned int borderpx  = 1;                /* border pixel of windows */
 static const unsigned int snap      = 10;               /* snap pixel */
 static const Bool showbar           = True;             /* False means no bar */
