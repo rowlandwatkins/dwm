@@ -17,11 +17,11 @@ conflicts=('dwm-pango')
 install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         config.h
-        01-dwm-5.9-pertag2.diff
-        02-dwm-5.9-scratchpad-stay.diff
-        03-dwm-5.9-statuscolors.diff
-		04-dwm-5.9-xbm_layout_icons.diff
-		05-dwm-5.9-cflags.diff
+        01-dwm-$pkgver-pertag2.diff
+        02-dwm-$pkgver-scratchpad-stay.diff
+		03-dwm-$pkgver-xbm_layout_icons.diff
+		04-dwm-$pkgver-cflags.diff
+        05-dwm-$pkgver-urgentcolor.diff
         pidgin-grid.c
         nbstack.c
         push.c)
@@ -29,11 +29,16 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 build() {
   cd $srcdir/dwm-$pkgver
 
-  patch < ../01-dwm-5.9-pertag2.diff
-  patch < ../02-dwm-5.9-scratchpad-stay.diff
-  patch < ../03-dwm-5.9-statuscolors.diff
-  patch < ../04-dwm-5.9-xbm_layout_icons.diff
-  patch < ../05-dwm-5.9-cflags.diff
+echo pertag
+  patch < ../01-dwm-$pkgver-pertag2.diff
+  echo scratchpad
+  patch < ../02-dwm-$pkgver-scratchpad-stay.diff
+  echo icons
+  patch < ../03-dwm-$pkgver-xbm_layout_icons.diff
+  echo cflags
+  patch < ../04-dwm-$pkgver-cflags.diff
+  echo urgcol
+  patch < ../05-dwm-$pkgver-urgentcolor.diff
   cp $srcdir/config.h config.h
   cp $srcdir/pidgin-grid.c pidgin-grid.c
   cp $srcdir/nbstack.c nbstack.c

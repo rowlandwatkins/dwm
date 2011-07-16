@@ -1,0 +1,58 @@
+--- dwm.c.orig	2011-07-16 18:07:59.000000000 +0200
++++ dwm.c	2011-07-16 18:10:40.597847141 +0200
+@@ -118,6 +118,7 @@ typedef struct {
+ } Key;
+ 
+ typedef struct {
++    const char *icon;
+ 	const char *symbol;
+ 	void (*arrange)(Monitor *);
+ } Layout;
+@@ -186,6 +187,7 @@ static void die(const char *errstr, ...)
+ static Monitor *dirtomon(int dir);
+ static void drawbar(Monitor *m);
+ static void drawbars(void);
++static void drawicon(const char *file, unsigned long col[ColLast]);
+ static void drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]);
+ static void drawtext(const char *text, unsigned long col[ColLast], Bool invert);
+ static void enternotify(XEvent *e);
+@@ -774,8 +776,16 @@ drawbar(Monitor *m) {
+ 		           occ & 1 << i, urg & 1 << i, col);
+ 		dc.x += dc.w;
+ 	}
+-	dc.w = blw = TEXTW(m->ltsymbol);
+-	drawtext(m->ltsymbol, dc.norm, False);
++	blw = TEXTW(m->ltsymbol);
++
++    if(useicons) {
++        dc.w = dc.h;
++        drawicon(m->lt[m->sellt]->icon, dc.norm);
++    }
++    else {
++        dc.w = blw;
++        drawtext(m->ltsymbol, dc.norm, False);
++    }
+ 	dc.x += dc.w;
+ 	x = dc.x;
+ 	if(m == selmon) { /* status is only drawn on selected monitor */
+@@ -812,6 +822,20 @@ drawbars(void) {
+ }
+ 
+ void
++drawicon(const char *file, unsigned long col[ColLast]) {
++    Pixmap icon;
++    int px, py;
++    unsigned int pw, ph;
++    icon = XCreatePixmap(dpy, dc.drawable, dc.h, dc.h, 1);
++    XReadBitmapFile(dpy, dc.drawable, file, &pw, &ph, &icon, &px, &py);
++    XSetForeground(dpy, dc.gc, col[ColBG]);
++    XFillRectangle(dpy, dc.drawable, dc.gc, dc.x, 0, dc.h, dc.h);
++    XSetForeground(dpy, dc.gc, col[ColFG]);
++    XSetBackground(dpy, dc.gc, col[ColBG]);
++    XCopyPlane(dpy, icon, dc.drawable, dc.gc, px, py, pw, ph, dc.x, dc.h/2-ph/2+py, 1);
++}
++
++void
+ drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]) {
+ 	int x;
+ 

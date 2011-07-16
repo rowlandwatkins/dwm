@@ -5,15 +5,16 @@
 #include "X11/XF86keysym.h"
 
 /* appearance */
-#define NUMCOLORS 3
-static const char colors[NUMCOLORS][ColLast][8] = {
-    // border     foreground background
-    { "#212121", "#696969", "#121212" }, // 0 = normal
-    { "#696969", "#E0E0E0", "#121212" }, // 1 = selected
-    { "#212121", "#BF4D80", "#121212" }, // 2 = urgent
-};
-
 static const char font[]            = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*";
+static const char normbordercolor[] = "#212121";
+static const char normbgcolor[]     = "#121212";
+static const char normfgcolor[]     = "#696969";
+static const char selbordercolor[]  = "#696969";
+static const char selbgcolor[]      = "#121212";
+static const char selfgcolor[]      = "#E0E0E0";
+static const char urgbordercolor[]  = "#BF4D80";
+static const char urgfgcolor[]      = "#121212";
+static const char urgbgcolor[]      = "#BF4D80";
 static const unsigned int borderpx  = 1;                // border pixel of windows
 static const unsigned int snap      = 10;               // snap pixel
 static const Bool showbar           = True;             // False means no bar
