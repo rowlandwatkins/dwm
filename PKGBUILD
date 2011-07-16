@@ -29,15 +29,10 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 build() {
   cd $srcdir/dwm-$pkgver
 
-echo pertag
   patch < ../01-dwm-$pkgver-pertag2.diff
-  echo scratchpad
   patch < ../02-dwm-$pkgver-scratchpad-stay.diff
-  echo icons
   patch < ../03-dwm-$pkgver-xbm_layout_icons.diff
-  echo cflags
   patch < ../04-dwm-$pkgver-cflags.diff
-  echo urgcol
   patch < ../05-dwm-$pkgver-urgentcolor.diff
   cp $srcdir/config.h config.h
   cp $srcdir/pidgin-grid.c pidgin-grid.c
