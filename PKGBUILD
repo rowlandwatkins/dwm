@@ -22,7 +22,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 		03-dwm-$pkgver-xbm_layout_icons.diff
 		04-dwm-$pkgver-cflags.diff
         05-dwm-$pkgver-urgentcolor.diff
-        pidgin-grid.c
+        im-grid.c
         nbstack.c
         push.c)
 
@@ -35,7 +35,7 @@ build() {
   patch < ../04-dwm-$pkgver-cflags.diff
   patch < ../05-dwm-$pkgver-urgentcolor.diff
   cp $srcdir/config.h config.h
-  cp $srcdir/pidgin-grid.c pidgin-grid.c
+  cp $srcdir/im-grid.c im-grid.c
   cp $srcdir/nbstack.c nbstack.c
   cp $srcdir/push.c push.c
 

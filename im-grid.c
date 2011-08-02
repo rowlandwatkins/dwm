@@ -2,7 +2,7 @@ static const char wmname[] = "Buddy List";
 
 /* layout's mfact is buddy list width as ww % */
 void
-pidgin(Monitor *m) {
+imgrid(Monitor *m) {
 	unsigned int n, cols, rows, cn, rn, i, cx, cy, cw, ch;
   int wx; /* buddy list width and grid's wx */
   int ww; /* grid's ww */

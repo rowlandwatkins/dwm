@@ -1,19 +1,19 @@
 /* See LICENSE file for copyright and license details. */
 #include "nbstack.c"
-#include "pidgin-grid.c"
+#include "im-grid.c"
 #include "push.c"
 #include "X11/XF86keysym.h"
 
 /* appearance */
 static const char font[]            = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#212121";
-static const char normbgcolor[]     = "#121212";
-static const char normfgcolor[]     = "#696969";
-static const char selbordercolor[]  = "#696969";
-static const char selbgcolor[]      = "#121212";
-static const char selfgcolor[]      = "#E0E0E0";
+static const char normbgcolor[]     = "#151515";
+static const char normfgcolor[]     = "#5E5E5E";
+static const char selbordercolor[]  = "#5E5E5E";
+static const char selbgcolor[]      = "#151515";
+static const char selfgcolor[]      = "#BABABA";
 static const char urgbordercolor[]  = "#BF4D80";
-static const char urgfgcolor[]      = "#121212";
+static const char urgfgcolor[]      = "#151515";
 static const char urgbgcolor[]      = "#BF4D80";
 static const unsigned int borderpx  = 1;                // border pixel of windows
 static const unsigned int snap      = 10;               // snap pixel
@@ -33,7 +33,7 @@ static const Layout layouts[] = {
     { "/home/ok/Build/dwm/icons/bstack.xbm",   "TTT",      nbstack },
     { "/home/ok/Build/dwm/icons/float.xbm",    "><>",      NULL },     // no layout function means floating behavior
     { "/home/ok/Build/dwm/icons/monocle.xbm",  "[ ]",      monocle },
-    { "/home/ok/Build/dwm/icons/grid.xbm",     "###",      pidgin },
+    { "/home/ok/Build/dwm/icons/grid.xbm",     "###",      imgrid },
 };
 
 /* tagging */
@@ -42,37 +42,36 @@ static const Tag tags[] = {
         { "trm",      &layouts[3],     -1,      -1 },
         { "web",      &layouts[3],     -1,      -1 },
         { "doc",      &layouts[3],     -1,      -1 },
-        { "irc",      &layouts[4],     0.18,    -1 },
+        { "irc",      &layouts[4],     0.19,    -1 },
         { "foo",      &layouts[2],     -1,      -1 },
 };
 
 /* window rules */
 static const Rule rules[] = {
-        // class                  instance  title                                   tags mask  isfloating  monitor
-        {  NULL,                  NULL,     "tmux",                                 1 << 0,    False,      -1 },
-        { "OperaNext",            NULL,      NULL,                                  1 << 1,    False,      -1 },
-        { "Opera",                NULL,      NULL,                                  1 << 1,    False,      -1 },
-        { "Comix",                NULL,      NULL,                                  1 << 2,    False,      -1 },
-        { "FBReader",             NULL,      NULL,                                  1 << 2,    False,      -1 },
-        { "Kchmviewer",           NULL,      NULL,                                  1 << 2,    False,      -1 },
-        {  NULL,                  NULL,     "irssi",                                1 << 3,    False,      -1 },
-        { "Pidgin",               NULL,      NULL,                                  1 << 3,    False,      -1 },
-        { "Skype",                NULL,      NULL,                                  1 << 3,    True,       -1 },
-        { "Gimp",                 NULL,      NULL,                                  1 << 4,    True,       -1 },
-        { "Xsane",                NULL,      NULL,                                  1 << 4,    True,       -1 },
-        { "WorldOfGoo.bin32",     NULL,      NULL,                                  1 << 4,    True,       -1 },
-        { "Audacious",            NULL,      NULL,                                  0,         True,       -1 },
-        { "Gnome-mplayer",        NULL,      NULL,                                  0,         True,       -1 },
-        { "Gtk-recordMyDesktop",  NULL,      NULL,                                  0,         True,       -1 },
-        { "Keepassx",             NULL,      NULL,                                  0,         True,       -1 },
-        { "Lxappearance",         NULL,      NULL,                                  0,         True,       -1 },
-        { "MPlayer",              NULL,      NULL,                                  0,         True,       -1 },
-        { "Nitrogen",             NULL,      NULL,                                  0,         True,       -1 },
-        { "Qalculate-gtk",        NULL,      NULL,                                  0,         True,       -1 },
-        { "Qalculate",            NULL,      NULL,                                  0,         True,       -1 },
-        { "Thunar",               NULL,     "Bulk Rename - Rename Multiple Files",  0,         True,       -1 },
-        { "Zenity",               NULL,      NULL,                                  0,         True,       -1 },
-        {  NULL,                  NULL,     "shutdown-dialog.py",                   0,         True,       -1 },
+        // class                  instance  title                  tags mask  isfloating  monitor
+        {  NULL,                  NULL,     "tmux",                1 << 0,    False,      -1 },
+        { "OperaNext",            NULL,      NULL,                 1 << 1,    False,      -1 },
+        { "Opera",                NULL,      NULL,                 1 << 1,    False,      -1 },
+        { "Comix",                NULL,      NULL,                 1 << 2,    False,      -1 },
+        { "FBReader",             NULL,      NULL,                 1 << 2,    False,      -1 },
+        { "Kchmviewer",           NULL,      NULL,                 1 << 2,    False,      -1 },
+        {  NULL,                  NULL,     "irssi",               1 << 3,    False,      -1 },
+        { "Pidgin",               NULL,      NULL,                 1 << 3,    False,      -1 },
+        { "Skype",                NULL,      NULL,                 1 << 3,    True,       -1 },
+        { "Gimp",                 NULL,      NULL,                 1 << 4,    True,       -1 },
+        { "Xsane",                NULL,      NULL,                 1 << 4,    True,       -1 },
+        { "WorldOfGoo.bin32",     NULL,      NULL,                 1 << 4,    True,       -1 },
+        { "Audacious",            NULL,      NULL,                 0,         True,       -1 },
+        { "Gnome-mplayer",        NULL,      NULL,                 0,         True,       -1 },
+        { "Gtk-recordMyDesktop",  NULL,      NULL,                 0,         True,       -1 },
+        { "Keepassx",             NULL,      NULL,                 0,         True,       -1 },
+        { "Lxappearance",         NULL,      NULL,                 0,         True,       -1 },
+        { "MPlayer",              NULL,      NULL,                 0,         True,       -1 },
+        { "Nitrogen",             NULL,      NULL,                 0,         True,       -1 },
+        { "Qalculate-gtk",        NULL,      NULL,                 0,         True,       -1 },
+        { "Qalculate",            NULL,      NULL,                 0,         True,       -1 },
+        { "Zenity",               NULL,      NULL,                 0,         True,       -1 },
+        {  NULL,                  NULL,     "shutdown-dialog.py",  0,         True,       -1 },
 };
 
 /* key definitions */
@@ -87,18 +86,18 @@ static const Rule rules[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *operacmd[]      = { "/home/ok/Scripts/opera.sh", NULL };
-static const char *dmenucmd[]      = { "dmenu-launch", NULL };
-static const char *irssicmd[]      = { "urxvtc", "-title", "irssi", "-e", "irssi", NULL };
+static const char *browsercmd[]    = { "/home/ok/Scripts/opera.sh", NULL };
+static const char *dictcmd[]       = { "stardict", NULL };
+static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *imcmd[]         = { "psi-plus", NULL };
+static const char *irccmd[]        = { "urxvtc", "-title", "irssi", "-e", "irssi", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
 static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
-static const char *pidgincmd[]     = { "pidgin", NULL };
 static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
 static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
 static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
 static const char *shutdowncmd[]   = { "/home/ok/Scripts/shutdown-dialog.py", NULL };
-static const char *stardictcmd[]   = { "stardict", NULL };
 static const char *termcmd[]       = { "urxvtc", NULL };
 static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "/home/ok/Scripts/tmux.sh", NULL };
 static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
@@ -108,18 +107,18 @@ static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "w
 
 static Key keys[] = {
    // modifier                       key                       function        argument
-    { Mod4Mask,                      XK_o,                     spawn,          {.v = operacmd } },
+    { Mod4Mask,                      XK_o,                     spawn,          {.v = browsercmd } },
+    { Mod4Mask,                      XK_s,                     spawn,          {.v = dictcmd } },
     { 0,                             XK_Menu,                  spawn,          {.v = dmenucmd } },
-    { Mod4Mask,                      XK_i,                     spawn,          {.v = irssicmd } },
+    { Mod4Mask,                      XK_p,                     spawn,          {.v = imcmd } },
+    { Mod4Mask,                      XK_i,                     spawn,          {.v = irccmd } },
     { MODKEY|ShiftMask,              XK_e,                     spawn,          {.v = logoutcmd } },
     { Mod4Mask,                      XK_space,                 spawn,          {.v = menucmd } },
     { 0,                             XF86XK_Display,           spawn,          {.v = monitorcmd } },
-    { Mod4Mask,                      XK_p,                     spawn,          {.v = pidgincmd } },
     { MODKEY|ShiftMask,              XK_r,                     spawn,          {.v = reloadcmd} },
     { 0,                             XK_F12,                   togglescratch,  {.v = scratchpadcmd} },
     { 0,                             XF86XK_Launch1,           spawn,          {.v = screenoffcmd } },
     { 0,                             XF86XK_PowerOff,          spawn,          {.v = shutdowncmd } },
-    { Mod4Mask,                      XK_s,                     spawn,          {.v = stardictcmd } },
     { MODKEY,                        XK_Return,                spawn,          {.v = termcmd } },
     { Mod4Mask,                      XK_t,                     spawn,          {.v = tmuxcmd } },
     { 0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = voldowncmd } },
