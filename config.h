@@ -58,6 +58,7 @@ static const Rule rules[] = {
         {  NULL,                  NULL,     "irssi",               1 << 3,    False,      -1 },
         { "Pidgin",               NULL,      NULL,                 1 << 3,    False,      -1 },
         { "Skype",                NULL,      NULL,                 1 << 3,    True,       -1 },
+        { "Evopedia",             NULL,      NULL,                 1 << 4,    True,       -1 },
         { "Gimp",                 NULL,      NULL,                 1 << 4,    True,       -1 },
         { "Xsane",                NULL,      NULL,                 1 << 4,    True,       -1 },
         { "WorldOfGoo.bin32",     NULL,      NULL,                 1 << 4,    True,       -1 },
@@ -89,7 +90,7 @@ static const Rule rules[] = {
 static const char *browsercmd[]    = { "/home/ok/Scripts/opera.sh", NULL };
 static const char *dictcmd[]       = { "stardict", NULL };
 static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *imcmd[]         = { "psi-plus", NULL };
+static const char *imcmd[]         = { "pidgin", NULL };
 static const char *irccmd[]        = { "urxvtc", "-title", "irssi", "-e", "irssi", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
