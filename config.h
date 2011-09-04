@@ -6,15 +6,15 @@
 
 /* appearance */
 static const char font[]            = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*";
-static const char normbordercolor[] = "#212121";
-static const char normbgcolor[]     = "#151515";
-static const char normfgcolor[]     = "#5E5E5E";
-static const char selbordercolor[]  = "#5E5E5E";
-static const char selbgcolor[]      = "#151515";
-static const char selfgcolor[]      = "#BABABA";
-static const char urgbordercolor[]  = "#BF4D80";
-static const char urgfgcolor[]      = "#151515";
-static const char urgbgcolor[]      = "#BF4D80";
+static const char normbordercolor[] = "#073642";
+static const char normbgcolor[]     = "#002b36";
+static const char normfgcolor[]     = "#657b83";
+static const char selbordercolor[]  = "#657b83";
+static const char selbgcolor[]      = "#002b36";
+static const char selfgcolor[]      = "#eee8d5";
+static const char urgbordercolor[]  = "#dc322f";
+static const char urgfgcolor[]      = "#002b36";
+static const char urgbgcolor[]      = "#dc322f";
 static const unsigned int borderpx  = 1;                // border pixel of windows
 static const unsigned int snap      = 10;               // snap pixel
 static const Bool showbar           = True;             // False means no bar
@@ -42,7 +42,7 @@ static const Tag tags[] = {
         { "trm",      &layouts[3],     -1,      -1 },
         { "web",      &layouts[3],     -1,      -1 },
         { "doc",      &layouts[3],     -1,      -1 },
-        { "irc",      &layouts[4],     0.19,    -1 },
+        { "irc",      &layouts[4],     0.21,    -1 },
         { "foo",      &layouts[2],     -1,      -1 },
 };
 
@@ -50,6 +50,7 @@ static const Tag tags[] = {
 static const Rule rules[] = {
         // class                  instance  title                  tags mask  isfloating  monitor
         {  NULL,                  NULL,     "tmux",                1 << 0,    False,      -1 },
+        { "Firefox",              NULL,      NULL,                 1 << 1,    False,      -1 },
         { "OperaNext",            NULL,      NULL,                 1 << 1,    False,      -1 },
         { "Opera",                NULL,      NULL,                 1 << 1,    False,      -1 },
         { "Comix",                NULL,      NULL,                 1 << 2,    False,      -1 },
@@ -158,6 +159,7 @@ static Key keys[] = {
     TAGKEYS(                         XK_iacute,                                8)
 };
 
+#include "tilemovemouse.c"
 /* button definitions */
 // click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin
 static Button buttons[] = {
@@ -165,7 +167,7 @@ static Button buttons[] = {
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkWinTitle,          0,              Button1,        focusstack,     {.i = +1 } },
     { ClkWinTitle,          0,              Button3,        focusstack,     {.i = -1 } },
-    { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         MODKEY,         Button1,        tilemovemouse,  {0} },
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
     { ClkTagBar,            0,              Button1,        view,           {0} },

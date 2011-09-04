@@ -6,7 +6,7 @@
 
 pkgname=dwm
 pkgver=5.9
-pkgrel=1
+pkgrel=2
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
 arch=('i686' 'x86_64')
@@ -17,27 +17,31 @@ conflicts=('dwm-pango')
 install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         config.h
-        01-dwm-$pkgver-pertag2.diff
-        02-dwm-$pkgver-scratchpad-stay.diff
-		03-dwm-$pkgver-xbm_layout_icons.diff
-		04-dwm-$pkgver-cflags.diff
-        05-dwm-$pkgver-urgentcolor.diff
+        tilemovemouse.c
         im-grid.c
         nbstack.c
         push.c)
+_patches=(01-dwm-$pkgver-pertag2.diff
+          02-dwm-$pkgver-scratchpad-stay.diff
+  	      03-dwm-$pkgver-xbm_layout_icons.diff
+  		  04-dwm-$pkgver-cflags.diff
+          05-dwm-$pkgver-urgentcolor.diff)
+source=(${source[@]} ${_patches[@]})
+
 
 build() {
   cd $srcdir/dwm-$pkgver
+  
+  # patch time!
+  for p in "${_patches[@]}"; do
+    patch < ../$p || return 1
+  done
 
-  patch < ../01-dwm-$pkgver-pertag2.diff
-  patch < ../02-dwm-$pkgver-scratchpad-stay.diff
-  patch < ../03-dwm-$pkgver-xbm_layout_icons.diff
-  patch < ../04-dwm-$pkgver-cflags.diff
-  patch < ../05-dwm-$pkgver-urgentcolor.diff
   cp $srcdir/config.h config.h
   cp $srcdir/im-grid.c im-grid.c
   cp $srcdir/nbstack.c nbstack.c
   cp $srcdir/push.c push.c
+  cp $srcdir/tilemovemouse.c tilemovemouse.c
 
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 || return 1
   make PREFIX=/usr DESTDIR=$pkgdir install || return 1
