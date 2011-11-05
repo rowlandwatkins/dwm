@@ -25,7 +25,7 @@
 +    c->tags = scratchpadtag;
 +    c->isfloating = True;
 +    c->x = (c->mon->mw - c->w) - 10;
-+    c->y = 22;
++    c->y = 20;
 +    c->mon->tagset[c->mon->seltags] |= c->tags;
 +  } else { /* make sure non-scratchpads stay out of scratchpadtag */
 +    c->tags &= TAGMASK;

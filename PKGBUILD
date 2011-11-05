@@ -20,6 +20,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         tilemovemouse.c
         im-grid.c
         nbstack.c
+        togglefullscreen.c
         push.c)
 _patches=(01-dwm-$pkgver-pertag2.diff
           02-dwm-$pkgver-scratchpad-stay.diff
@@ -42,6 +43,7 @@ build() {
   cp $srcdir/nbstack.c nbstack.c
   cp $srcdir/push.c push.c
   cp $srcdir/tilemovemouse.c tilemovemouse.c
+  cp $srcdir/togglefullscreen.c togglefullscreen.c
 
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 || return 1
   make PREFIX=/usr DESTDIR=$pkgdir install || return 1
