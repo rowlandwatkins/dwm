@@ -6,8 +6,8 @@
 #include "togglefullscreen.c"
 
 /* appearance */
-//static const char font[]            = "-*-glisp-*-*-*-*-11-*-*-*-*-*-*-*";
-static const char font[]            = "-*-fixed-medium-r-*-*-10-*-*-*-*-*-iso8859-*";
+static const char font[]            = "-*-glisp-medium-*-*-*-11-*-*-*-*-*-*-*";
+//static const char font[]            = "-*-fixed-medium-r-*-*-10-*-*-*-*-*-iso8859-*";
 
 // solarized
 //static const char normbordercolor[] = "#073642";
