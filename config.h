@@ -7,7 +7,6 @@
 
 /* appearance */
 static const char font[]            = "-*-glisp-medium-*-*-*-11-*-*-*-*-*-*-*";
-//static const char font[]            = "-*-fixed-medium-r-*-*-10-*-*-*-*-*-iso8859-*";
 
 // solarized
 //static const char normbordercolor[] = "#073642";
@@ -37,6 +36,8 @@ static const Bool showbar           = True;             // False means no bar
 static const Bool topbar            = True;             // False means bottom bar
 static Bool useicons                = True;             // False means use ascii symbols
 static const char scratchpadname[]  = "Scratchpad";
+static const Bool systray_enable    = True;
+static const int systray_spacing    = 1;
 
 /* layout(s) */
 static const float mfact      = 0.50;     // factor of master area size [0.05..0.95]
@@ -80,7 +81,7 @@ static const Rule rules[] = {
         { "Gimp",                 NULL,      NULL,                 1 << 5,    True,       -1 },
         { "Xsane",                NULL,      NULL,                 1 << 5,    True,       -1 },
         { "Gnome-mplayer",        NULL,      NULL,                 0,         True,       -1 },
-        { "Goldendict",           NULL,      NULL,                 0,         True,       -1 },
+        { "Gtk-chtheme",          NULL,      NULL,                 0,         True,       -1 },
         { "Gtk-recordMyDesktop",  NULL,      NULL,                 0,         True,       -1 },
         { "Keepassx",             NULL,      NULL,                 0,         True,       -1 },
         { "Lxappearance",         NULL,      NULL,                 0,         True,       -1 },
@@ -88,6 +89,7 @@ static const Rule rules[] = {
         { "Nitrogen",             NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate-gtk",        NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate",            NULL,      NULL,                 0,         True,       -1 },
+        { "Stardict",             NULL,      NULL,                 0,         True,       -1 },
         { "Zenity",               NULL,      NULL,                 0,         True,       -1 },
         {  NULL,                  NULL,     "shutdown-dialog.py",  0,         True,       -1 },
 };
@@ -106,7 +108,7 @@ static const Rule rules[] = {
 /* commands */
 static const char *addresscmd[]    = { "urxvtc", "-title", "abook", "-e", "/home/ok/Scripts/abook-autoexport", NULL };
 static const char *browsercmd[]    = { "opera-next", "-noargb", "-nolirc", NULL };
-static const char *dictcmd[]       = { "goldendict", NULL };
+static const char *dictcmd[]       = { "stardict", NULL };
 static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
 static const char *irccmd[]        = { "urxvtc", "-title", "weechat", "-e", "weechat-curses", NULL };
