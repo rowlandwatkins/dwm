@@ -46,11 +46,11 @@ static const int nmaster      = 1;        // default number of clients in the ma
 
 static const Layout layouts[] = {
     // icon                                     symbol     arrange function
-    { "/home/ok/Build/dwm/icons/tile.xbm",     "[]=",      ntile },
-    { "/home/ok/Build/dwm/icons/bstack.xbm",   "TTT",      nbstack },
-    { "/home/ok/Build/dwm/icons/float.xbm",    "><>",      NULL },     // no layout function means floating behavior
-    { "/home/ok/Build/dwm/icons/monocle.xbm",  "[ ]",      monocle },
-    { "/home/ok/Build/dwm/icons/grid.xbm",     "###",      imgrid },
+    { "/home/ok/build/dwm/icons/tile.xbm",     "[]=",      ntile },
+    { "/home/ok/build/dwm/icons/bstack.xbm",   "TTT",      nbstack },
+    { "/home/ok/build/dwm/icons/float.xbm",    "><>",      NULL },     // no layout function means floating behavior
+    { "/home/ok/build/dwm/icons/monocle.xbm",  "[ ]",      monocle },
+    { "/home/ok/build/dwm/icons/grid.xbm",     "###",      imgrid },
 };
 
 /* tagging */
@@ -91,7 +91,7 @@ static const Rule rules[] = {
         { "Qalculate",            NULL,      NULL,                 0,         True,       -1 },
         { "Stardict",             NULL,      NULL,                 0,         True,       -1 },
         { "Zenity",               NULL,      NULL,                 0,         True,       -1 },
-        {  NULL,                  NULL,     "shutdown-dialog.py",  0,         True,       -1 },
+        {  NULL,                  NULL,     "pygtk-shutdown",  0,         True,       -1 },
 };
 
 /* key definitions */
@@ -106,22 +106,22 @@ static const Rule rules[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *addresscmd[]    = { "urxvtc", "-title", "abook", "-e", "/home/ok/Scripts/abook-autoexport", NULL };
+static const char *addresscmd[]    = { "urxvtc", "-title", "abook", "-e", "/home/ok/bin/abook-autoexport", NULL };
 static const char *browsercmd[]    = { "opera-next", "-noargb", "-nolirc", NULL };
 static const char *dictcmd[]       = { "stardict", NULL };
 static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
 static const char *irccmd[]        = { "urxvtc", "-title", "weechat", "-e", "weechat-curses", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
-static const char *menucmd[]       = { "/home/ok/Scripts/mygtkmenu.py", NULL };
-static const char *monitorcmd[]    = { "/home/ok/Scripts/monitor-dwm.sh", NULL };
+static const char *menucmd[]       = { "/home/ok/bin/mygtkmenu.py", NULL };
+static const char *monitorcmd[]    = { "/home/ok/bin/monitor-dwm.sh", NULL };
 static const char *passcmd[]       = { "keepassx", NULL };
-static const char *reloadcmd[]     = { "/home/ok/Scripts/dwm-reload.sh", NULL };
+static const char *reloadcmd[]     = { "/home/ok/bin/dwm-reload.sh", NULL };
 static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
 static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
-static const char *shutdowncmd[]   = { "/home/ok/Scripts/shutdown-dialog.py", NULL };
+static const char *shutdowncmd[]   = { "/home/ok/bin/pygtk-shutdown", NULL };
 static const char *termcmd[]       = { "urxvtc", NULL };
-static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "/home/ok/Scripts/tmux.sh", NULL };
+static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "/home/ok/bin/tmux.sh", NULL };
 static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
 static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle",  NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "2dB+",  NULL };
