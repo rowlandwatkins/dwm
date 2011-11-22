@@ -31,7 +31,7 @@ static const char urgbgcolor[]      = "#0D131A";
 static const char urgfgcolor[]      = "#B3354C";
 
 static const unsigned int borderpx  = 1;                // border pixel of windows
-static const unsigned int snap      = 10;               // snap pixel
+static const unsigned int snap      = 5;                // snap pixel
 static const Bool showbar           = True;             // False means no bar
 static const Bool topbar            = True;             // False means bottom bar
 static Bool useicons                = True;             // False means use ascii symbols
