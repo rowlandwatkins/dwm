@@ -107,7 +107,7 @@ static const Rule rules[] = {
 
 /* commands */
 static const char *addresscmd[]    = { "urxvtc", "-title", "abook", "-e", "/home/ok/bin/abook-autoexport", NULL };
-static const char *browsercmd[]    = { "opera-next", "-noargb", "-nolirc", NULL };
+static const char *browsercmd[]    = { "/home/ok/bin/browser", NULL };
 static const char *dictcmd[]       = { "stardict", NULL };
 static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
@@ -177,9 +177,9 @@ static Key keys[] = {
     TAGKEYS(                         XK_ccaron,                                  3)
     TAGKEYS(                         XK_rcaron,                                  4)
     TAGKEYS(                         XK_zcaron,                                  5)
-    TAGKEYS(                         XK_yacute,                                  6)
-    TAGKEYS(                         XK_aacute,                                  7)
-    TAGKEYS(                         XK_iacute,                                  8)
+//    TAGKEYS(                         XK_yacute,                                  6)
+//    TAGKEYS(                         XK_aacute,                                  7)
+//    TAGKEYS(                         XK_iacute,                                  8)
 };
 
 #include "tilemovemouse.c"
