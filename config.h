@@ -6,28 +6,16 @@
 #include "togglefullscreen.c"
 
 /* appearance */
-static const char font[]            = "-*-glisp-medium-*-*-*-11-*-*-*-*-*-*-*";
+static const char font[]            = "-*-termsyn-medium-*-*-*-11-*-*-*-*-*-*-*";
 
-// solarized
-//static const char normbordercolor[] = "#073642";
-//static const char normbgcolor[]     = "#002b36";
-//static const char normfgcolor[]     = "#657b83";
-//static const char selbordercolor[]  = "#657b83";
-//static const char selbgcolor[]      = "#002b36";
-//static const char selfgcolor[]      = "#eee8d5";
-//static const char urgbordercolor[]  = "#dc322f";
-//static const char urgfgcolor[]      = "#002b36";
-//static const char urgbgcolor[]      = "#dc322f";
-
-// darkcourses
-static const char normbordercolor[] = "#1A2633";
-static const char normbgcolor[]     = "#0D131A";
-static const char normfgcolor[]     = "#44484C";
-static const char selbordercolor[]  = "#44484C";
-static const char selbgcolor[]      = "#0D131A";
-static const char selfgcolor[]      = "#B3B3B3";
+static const char normbordercolor[] = "#1A1A1A";
+static const char normbgcolor[]     = "#020202";
+static const char normfgcolor[]     = "#606060";
+static const char selbordercolor[]  = "#4C4C4C";
+static const char selbgcolor[]      = "#020202";
+static const char selfgcolor[]      = "#999999";
 static const char urgbordercolor[]  = "#802635";
-static const char urgbgcolor[]      = "#0D131A";
+static const char urgbgcolor[]      = "#020202";
 static const char urgfgcolor[]      = "#B3354C";
 
 static const unsigned int borderpx  = 1;                // border pixel of windows
@@ -45,12 +33,12 @@ static const Bool resizehints = False;    // True means respect size hints in ti
 static const int nmaster      = 1;        // default number of clients in the master area
 
 static const Layout layouts[] = {
-    // icon                                     symbol     arrange function
-    { "/home/ok/build/dwm/icons/tile.xbm",     "[]=",      ntile },
-    { "/home/ok/build/dwm/icons/bstack.xbm",   "TTT",      nbstack },
-    { "/home/ok/build/dwm/icons/float.xbm",    "><>",      NULL },     // no layout function means floating behavior
-    { "/home/ok/build/dwm/icons/monocle.xbm",  "[ ]",      monocle },
-    { "/home/ok/build/dwm/icons/grid.xbm",     "###",      imgrid },
+    // icon                                    symbol    arrange function
+    { "/home/ok/build/dwm/icons/tile.xbm",     "þ",      ntile },
+    { "/home/ok/build/dwm/icons/bstack.xbm",   "ü",      nbstack },
+    { "/home/ok/build/dwm/icons/float.xbm",    "ý",      NULL },     // no layout function means floating behavior
+    { "/home/ok/build/dwm/icons/monocle.xbm",  "ÿ",      monocle },
+    { "/home/ok/build/dwm/icons/grid.xbm",     "ú",      imgrid },
 };
 
 /* tagging */
@@ -71,17 +59,14 @@ static const Rule rules[] = {
         { "Firefox",              NULL,      NULL,                 1 << 1,    False,      -1 },
         { "OperaNext",            NULL,      NULL,                 1 << 1,    False,      -1 },
         { "Opera",                NULL,      NULL,                 1 << 1,    False,      -1 },
-        { "Comix",                NULL,      NULL,                 1 << 2,    False,      -1 },
         { "FBReader",             NULL,      NULL,                 1 << 2,    False,      -1 },
-        { "Kchmviewer",           NULL,      NULL,                 1 << 2,    False,      -1 },
         { "Lazarus",              NULL,      NULL,                 1 << 3,    True,       -1 },
-        {  NULL,                  NULL,     "weechat",             1 << 4,    False,      -1 },
         { "Pidgin",               NULL,      NULL,                 1 << 4,    False,      -1 },
         { "Skype",                NULL,      NULL,                 1 << 4,    True,       -1 },
         { "Gimp",                 NULL,      NULL,                 1 << 5,    True,       -1 },
         { "Xsane",                NULL,      NULL,                 1 << 5,    True,       -1 },
         { "Gnome-mplayer",        NULL,      NULL,                 0,         True,       -1 },
-        { "Gtk-chtheme",          NULL,      NULL,                 0,         True,       -1 },
+        { "Gsimplecal",           NULL,      NULL,                 0,         True,       -1 },
         { "Gtk-recordMyDesktop",  NULL,      NULL,                 0,         True,       -1 },
         { "Keepassx",             NULL,      NULL,                 0,         True,       -1 },
         { "Lxappearance",         NULL,      NULL,                 0,         True,       -1 },
