@@ -10,10 +10,10 @@ static const char font[]            = "-*-termsyn-medium-*-*-*-11-*-*-*-*-*-*-*"
 
 static const char normbordercolor[] = "#1A1A1A";
 static const char normbgcolor[]     = "#020202";
-static const char normfgcolor[]     = "#606060";
+static const char normfgcolor[]     = "#808080";
 static const char selbordercolor[]  = "#4C4C4C";
 static const char selbgcolor[]      = "#020202";
-static const char selfgcolor[]      = "#999999";
+static const char selfgcolor[]      = "#B3B3B3";
 static const char urgbordercolor[]  = "#802635";
 static const char urgbgcolor[]      = "#020202";
 static const char urgfgcolor[]      = "#B3354C";
@@ -24,8 +24,6 @@ static const Bool showbar           = True;             // False means no bar
 static const Bool topbar            = True;             // False means bottom bar
 static Bool useicons                = True;             // False means use ascii symbols
 static const char scratchpadname[]  = "Scratchpad";
-static const Bool systray_enable    = True;
-static const int systray_spacing    = 1;
 
 /* layout(s) */
 static const float mfact      = 0.50;     // factor of master area size [0.05..0.95]
@@ -76,7 +74,7 @@ static const Rule rules[] = {
         { "Qalculate",            NULL,      NULL,                 0,         True,       -1 },
         { "Stardict",             NULL,      NULL,                 0,         True,       -1 },
         { "Zenity",               NULL,      NULL,                 0,         True,       -1 },
-        {  NULL,                  NULL,     "pygtk-shutdown",  0,         True,       -1 },
+        {  NULL,                  NULL,     "pygtk-shutdown",      0,         True,       -1 },
 };
 
 /* key definitions */
