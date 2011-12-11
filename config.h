@@ -15,8 +15,8 @@ static const char selbordercolor[]  = "#4C4C4C";
 static const char selbgcolor[]      = "#020202";
 static const char selfgcolor[]      = "#B3B3B3";
 static const char urgbordercolor[]  = "#802635";
-static const char urgbgcolor[]      = "#020202";
-static const char urgfgcolor[]      = "#B3354C";
+static const char urgfgcolor[]      = "#020202";
+static const char urgbgcolor[]      = "#B3354C";
 
 static const unsigned int borderpx  = 1;                // border pixel of windows
 static const unsigned int snap      = 5;                // snap pixel
