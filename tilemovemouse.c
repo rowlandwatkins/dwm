@@ -1,3 +1,5 @@
+#define INRECT(X,Y,RX,RY,RW,RH) ((X) >= (RX) && (X) < (RX) + (RW) && (Y) >= (RY) && (Y) < (RY) + (RH))
+
 void
 insertbefore(Client *a, Client *b)	/* insert a before b in the client list */
 {
@@ -29,7 +31,7 @@ tilemovemouse(const Arg *arg) {
 	if(!(c = selmon->sel))
 		return;
 
-	if((m = ptrtomon(c->x + c->w / 2, c->y + c->h / 2)) != selmon) {
+	if((m = recttomon(c->x, c->y, c->w, c->h)) != selmon) {
 		sendmon(c, m);
 		selmon = m;
 		focus(NULL);

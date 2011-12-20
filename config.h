@@ -1,5 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-#include "nbstack.c"
 #include "im-grid.c"
 #include "push.c"
 #include "X11/XF86keysym.h"
@@ -32,8 +31,8 @@ static const int nmaster      = 1;        // default number of clients in the ma
 
 static const Layout layouts[] = {
     // icon                                    symbol    arrange function
-    { "/home/ok/build/dwm/icons/tile.xbm",     "þ",      ntile },
-    { "/home/ok/build/dwm/icons/bstack.xbm",   "ü",      nbstack },
+    { "/home/ok/build/dwm/icons/tile.xbm",     "þ",      tile },
+    { "/home/ok/build/dwm/icons/bstack.xbm",   "ü",      bstack },
     { "/home/ok/build/dwm/icons/float.xbm",    "ý",      NULL },     // no layout function means floating behavior
     { "/home/ok/build/dwm/icons/monocle.xbm",  "ÿ",      monocle },
     { "/home/ok/build/dwm/icons/grid.xbm",     "ú",      imgrid },
@@ -68,7 +67,7 @@ static const Rule rules[] = {
         { "Gtk-recordMyDesktop",  NULL,      NULL,                 0,         True,       -1 },
         { "Keepassx",             NULL,      NULL,                 0,         True,       -1 },
         { "Lxappearance",         NULL,      NULL,                 0,         True,       -1 },
-        { "MPlayer",              NULL,      NULL,                 0,         True,       -1 },
+        { "mplayer2",             NULL,      NULL,                 0,         True,       -1 },
         { "Nitrogen",             NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate-gtk",        NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate",            NULL,      NULL,                 0,         True,       -1 },

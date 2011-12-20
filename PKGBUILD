@@ -5,8 +5,8 @@
 # Contributor: Grigorios Bouzakis <grbzks at gmail dot com>
 
 pkgname=dwm
-pkgver=5.9
-pkgrel=2
+pkgver=6.0
+pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
 arch=('i686' 'x86_64')
@@ -19,15 +19,13 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         config.h
         tilemovemouse.c
         im-grid.c
-        nbstack.c
         togglefullscreen.c
         push.c)
 _patches=(01-dwm-$pkgver-pertag2.diff
           02-dwm-$pkgver-scratchpad-stay.diff
           03-dwm-$pkgver-xbm_layout_icons.diff
           04-dwm-$pkgver-cflags.diff
-          05-dwm-$pkgver-urgentcolor.diff
-          06-dwm-$pkgver-apply_resizehints_in_floating_layout.diff)
+          05-dwm-$pkgver-urgentcolor.diff)
 source=(${source[@]} ${_patches[@]})
 
 
@@ -41,7 +39,6 @@ build() {
 
   cp $srcdir/config.h config.h
   cp $srcdir/im-grid.c im-grid.c
-  cp $srcdir/nbstack.c nbstack.c
   cp $srcdir/push.c push.c
   cp $srcdir/tilemovemouse.c tilemovemouse.c
   cp $srcdir/togglefullscreen.c togglefullscreen.c
