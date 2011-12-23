@@ -56,7 +56,7 @@ static const Rule rules[] = {
         { "Firefox",              NULL,      NULL,                 1 << 1,    False,      -1 },
         { "OperaNext",            NULL,      NULL,                 1 << 1,    False,      -1 },
         { "Opera",                NULL,      NULL,                 1 << 1,    False,      -1 },
-        { "FBReader",             NULL,      NULL,                 1 << 2,    False,      -1 },
+        { "Cr3",                  NULL,      NULL,                 1 << 2,    False,      -1 },
         { "Lazarus",              NULL,      NULL,                 1 << 3,    True,       -1 },
         { "Pidgin",               NULL,      NULL,                 1 << 4,    False,      -1 },
         { "Skype",                NULL,      NULL,                 1 << 4,    True,       -1 },
@@ -93,7 +93,6 @@ static const char *browsercmd[]    = { "/home/ok/bin/browser", NULL };
 static const char *dictcmd[]       = { "stardict", NULL };
 static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
-static const char *irccmd[]        = { "urxvtc", "-title", "weechat", "-e", "weechat-curses", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/bin/mygtkmenu.py", NULL };
 static const char *monitorcmd[]    = { "/home/ok/bin/monitor-dwm.sh", NULL };
@@ -116,7 +115,6 @@ static Key keys[] = {
     { Mod4Mask,                      XK_d,                     spawn,            {.v = dictcmd } },
     { 0,                             XK_Menu,                  spawn,            {.v = dmenucmd } },
     { Mod4Mask,                      XK_p,                     spawn,            {.v = imcmd } },
-    { Mod4Mask,                      XK_i,                     spawn,            {.v = irccmd } },
     { MODKEY|ShiftMask,              XK_e,                     spawn,            {.v = logoutcmd } },
     { Mod4Mask,                      XK_space,                 spawn,            {.v = menucmd } },
     { 0,                             XF86XK_Display,           spawn,            {.v = monitorcmd } },
