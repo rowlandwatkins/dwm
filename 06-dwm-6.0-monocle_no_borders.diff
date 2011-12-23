@@ -1,0 +1,11 @@
+--- a/dwm.c	2011-11-27 02:35:59.130398713 +0200
++++ b/dwm.c	2011-11-27 02:35:59.132398714 +0200
+@@ -1247,7 +1247,7 @@ monocle(Monitor *m) {
+ 		if(ISVISIBLE(c))
+ 			n++;
+ 	for(c = nexttiled(m->clients); c; c = nexttiled(c->next))
+-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, False);
++		resize(c, m->wx - c->bw, m->wy - c->bw, m->ww, m->wh, False);
+ }
+ 
+ void
