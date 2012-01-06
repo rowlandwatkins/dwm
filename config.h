@@ -58,7 +58,6 @@ static const Rule rules[] = {
         { "Opera",                NULL,      NULL,                 1 << 1,    False,      -1 },
         { "Cr3",                  NULL,      NULL,                 1 << 2,    False,      -1 },
         { "Lazarus",              NULL,      NULL,                 1 << 3,    True,       -1 },
-        { "Pidgin",               NULL,      NULL,                 1 << 4,    False,      -1 },
         {  NULL,                  NULL,     "Weechat",             1 << 4,    False,      -1 },
         { "Gimp",                 NULL,      NULL,                 1 << 5,    True,       -1 },
         { "Skype",                NULL,      NULL,                 1 << 5,    True,       -1 },
@@ -66,12 +65,12 @@ static const Rule rules[] = {
         { "Gnome-mplayer",        NULL,      NULL,                 0,         True,       -1 },
         { "Gsimplecal",           NULL,      NULL,                 0,         True,       -1 },
         { "Gtk-recordMyDesktop",  NULL,      NULL,                 0,         True,       -1 },
-        { "Keepassx",             NULL,      NULL,                 0,         True,       -1 },
         { "Lxappearance",         NULL,      NULL,                 0,         True,       -1 },
         { "mplayer2",             NULL,      NULL,                 0,         True,       -1 },
         { "Nitrogen",             NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate-gtk",        NULL,      NULL,                 0,         True,       -1 },
         { "Qalculate",            NULL,      NULL,                 0,         True,       -1 },
+        { "Qpass",                NULL,      NULL,                 0,         True,       -1 },
         { "Stardict",             NULL,      NULL,                 0,         True,       -1 },
         { "Zenity",               NULL,      NULL,                 0,         True,       -1 },
         {  NULL,                  NULL,     "pygtk-shutdown",      0,         True,       -1 },
@@ -98,7 +97,7 @@ static const char *irccmd[]        = {"urxvtc", "-title", "Weechat", "-e", "weec
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "/home/ok/bin/mygtkmenu.py", NULL };
 static const char *monitorcmd[]    = { "/home/ok/bin/monitor-dwm.sh", NULL };
-static const char *passcmd[]       = { "keepassx", NULL };
+static const char *passcmd[]       = { "qpass", NULL };
 static const char *reloadcmd[]     = { "/home/ok/bin/dwm-reload.sh", NULL };
 static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
 static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
@@ -121,7 +120,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,              XK_e,                     spawn,            {.v = logoutcmd } },
     { Mod4Mask,                      XK_space,                 spawn,            {.v = menucmd } },
     { 0,                             XF86XK_Display,           spawn,            {.v = monitorcmd } },
-    { Mod4Mask,                      XK_k,                     spawn,            {.v = passcmd} },
+    { Mod4Mask,                      XK_h,                     spawn,            {.v = passcmd} },
     { MODKEY|ShiftMask,              XK_r,                     spawn,            {.v = reloadcmd} },
     { 0,                             XK_F12,                   togglescratch,    {.v = scratchpadcmd} },
     { 0,                             XF86XK_Launch1,           spawn,            {.v = screenoffcmd } },
