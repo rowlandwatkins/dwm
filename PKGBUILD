@@ -26,7 +26,8 @@ _patches=(01-dwm-$pkgver-pertag2.diff
           03-dwm-$pkgver-xbm_layout_icons.diff
           04-dwm-$pkgver-cflags.diff
           05-dwm-$pkgver-urgentcolor.diff
-          06-dwm-$pkgver-monocle_no_borders.diff)
+          06-dwm-$pkgver-monocle_no_borders.diff
+          07-dwm-$pkgver-centered-floating.diff)
 source=(${source[@]} ${_patches[@]})
 
 

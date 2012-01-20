@@ -1,0 +1,19 @@
+--- a/dwm.c	2012-01-20 20:13:50.924479074 +0200
++++ b/dwm.c	2012-01-20 20:13:50.927479074 +0200
+@@ -1190,8 +1190,14 @@ manage(Window w, XWindowAttributes *wa)
+ 		}
+ 	}
+ 	/* geometry */
+-	c->x = c->oldx = wa->x;
+-	c->y = c->oldy = wa->y;
++	if(!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) {
++		c->x = c->oldx = c->mon->wx + (c->mon->ww / 2 - wa->width / 2);
++		c->y = c->oldy = c->mon->wy + (c->mon->wh / 2 - wa->height / 2);
++	}
++	else {
++		c->x = c->oldx = wa->x;
++		c->y = c->oldy = wa->y;
++	}
+ 	c->w = c->oldw = wa->width;
+ 	c->h = c->oldh = wa->height;
+ 	c->oldbw = wa->border_width;
