@@ -92,7 +92,8 @@ static const Rule rules[] = {
 static const char *addresscmd[]    = { "urxvtc", "-title", "abook", "-e", "/home/ok/bin/abook-autoexport", NULL };
 static const char *browsercmd[]    = { "/home/ok/bin/browser", NULL };
 static const char *dictcmd[]       = { "stardict", NULL };
-static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor,
+                                       "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
 static const char *irccmd[]        = {"urxvtc", "-title", "Weechat", "-e", "weechat-curses", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
