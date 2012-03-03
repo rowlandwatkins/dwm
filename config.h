@@ -5,7 +5,7 @@
 #include "togglefullscreen.c"
 
 /* appearance */
-static const char font[]            = "-*-termsyn-medium-*-*-*-11-*-*-*-*-*-*-*";
+static const char font[]            = "-*-termsyn.icons-medium-*-*-*-11-*-*-*-*-*-*-*";
 
 static const char normbordercolor[] = "#1A1A1A";
 static const char normbgcolor[]     = "#020202";
@@ -41,12 +41,12 @@ static const Layout layouts[] = {
 /* tagging */
 static const Tag tags[] = {
         // name       layout           mfact    nmaster
-        { "sys",      &layouts[3],     -1,      -1 },
-        { "web",      &layouts[3],     -1,      -1 },
-        { "doc",      &layouts[3],     -1,      -1 },
-        { "dev",      &layouts[1],     -1,      -1 },
-        { "irc",      &layouts[3],     -1,      -1 },
-        { "foo",      &layouts[2],     -1,      -1 },
+        { "¹",        &layouts[3],     -1,      -1 },
+        { "Ú",        &layouts[3],     -1,      -1 },
+        { "´",        &layouts[3],     -1,      -1 },
+        { "²",        &layouts[1],     -1,      -1 },
+        { "©",        &layouts[3],     -1,      -1 },
+        { "º",        &layouts[2],     -1,      -1 },
 };
 
 /* window rules */
