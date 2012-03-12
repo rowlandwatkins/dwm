@@ -45,7 +45,8 @@ static const Tag tags[] = {
         { "Ú",        &layouts[3],     -1,      -1 },
         { "´",        &layouts[3],     -1,      -1 },
         { "²",        &layouts[1],     -1,      -1 },
-        { "©",        &layouts[3],     -1,      -1 },
+        { "©",        &layouts[4],   0.22,      -1 },
+        { "ê",        &layouts[0],   0.65,      -1 },
         { "º",        &layouts[2],     -1,      -1 },
 };
 
@@ -58,13 +59,11 @@ static const Rule rules[] = {
         { "Opera",                NULL,      NULL,                 1 << 1,    False,      True,       -1 },
         { "Cr3",                  NULL,      NULL,                 1 << 2,    False,      True,       -1 },
         { "Lazarus",              NULL,      NULL,                 1 << 3,    True,       False,      -1 },
+        { "Skype",                NULL,      NULL,                 1 << 4,    False,      True,       -1 },
         {  NULL,                  NULL,     "Weechat",             1 << 4,    False,      True,       -1 },
-        { "Gimp",                 NULL,      NULL,                 1 << 5,    True,       True,       -1 },
-        { "Skype",                NULL,      NULL,                 1 << 5,    True,       False,      -1 },
-        { "Xsane",                NULL,      NULL,                 1 << 5,    True,       False,      -1 },
-        { "Gnome-mplayer",        NULL,      NULL,                 0,         True,       True,       -1 },
+        { "Gimp",                 NULL,      NULL,                 1 << 6,    True,       True,       -1 },
+        { "Xsane",                NULL,      NULL,                 1 << 6,    True,       False,      -1 },
         { "Gsimplecal",           NULL,      NULL,                 0,         True,       False,      -1 },
-        { "Gtk-recordMyDesktop",  NULL,      NULL,                 0,         True,       True,       -1 },
         { "Lxappearance",         NULL,      NULL,                 0,         True,       True,       -1 },
         { "mplayer2",             NULL,      NULL,                 0,         True,       True,       -1 },
         { "Nitrogen",             NULL,      NULL,                 0,         True,       True,       -1 },
@@ -161,7 +160,7 @@ static Key keys[] = {
     TAGKEYS(                         XK_ccaron,                                  3)
     TAGKEYS(                         XK_rcaron,                                  4)
     TAGKEYS(                         XK_zcaron,                                  5)
-//    TAGKEYS(                         XK_yacute,                                  6)
+    TAGKEYS(                         XK_yacute,                                  6)
 //    TAGKEYS(                         XK_aacute,                                  7)
 //    TAGKEYS(                         XK_iacute,                                  8)
 };

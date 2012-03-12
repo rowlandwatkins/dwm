@@ -1,4 +1,4 @@
-static const char wmname[] = "Buddy List";
+static const char wmname[] = "Skype";
 
 /* layout's mfact is buddy list width as ww % */
 void
