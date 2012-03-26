@@ -7,22 +7,22 @@
 /* appearance */
 static const char font[]            = "-*-termsyn.icons-medium-*-*-*-11-*-*-*-*-*-*-*";
 
-static const char normbordercolor[] = "#1A1A1A";
-static const char normbgcolor[]     = "#020202";
-static const char normfgcolor[]     = "#808080";
-static const char selbordercolor[]  = "#4C4C4C";
-static const char selbgcolor[]      = "#020202";
-static const char selfgcolor[]      = "#B3B3B3";
-static const char urgbordercolor[]  = "#802635";
-static const char urgfgcolor[]      = "#020202";
-static const char urgbgcolor[]      = "#B3354C";
+#define NUMCOLORS         3
+static const char colors[NUMCOLORS][ColLast][8] = {
+    // border     foreground background
+    { "#1A1A1A", "#808080", "#020202" },  // normal
+    { "#4C4C4C", "#B3B3B3", "#020202" },  // selected
+    { "#B3354C", "#B3354C", "#020202" },  // urgent
+};
 
-static const unsigned int borderpx  = 1;                // border pixel of windows
-static const unsigned int snap      = 5;                // snap pixel
-static const Bool showbar           = True;             // False means no bar
-static const Bool topbar            = True;             // False means bottom bar
-static Bool useicons                = True;             // False means use ascii symbols
-static const char scratchpadname[]  = "Scratchpad";
+static const unsigned int borderpx       = 1;                // border pixel of windows
+static const unsigned int snap           = 5;                // snap pixel
+static const unsigned int systrayspacing = 1;                // space between systray icons
+static const Bool showsystray            = True;             // False means no systray
+static const Bool showbar                = True;             // False means no bar
+static const Bool topbar                 = True;             // False means bottom bar
+static Bool useicons                     = True;             // False means use ascii symbols
+static const char scratchpadname[]       = "Scratchpad";
 
 /* layout(s) */
 static const float mfact      = 0.50;     // factor of master area size [0.05..0.95]
@@ -90,9 +90,12 @@ static const Rule rules[] = {
 /* commands */
 static const char *addresscmd[]    = { "urxvtc", "-title", "abook", "-e", "/home/ok/bin/abook-autoexport", NULL };
 static const char *browsercmd[]    = { "/home/ok/bin/browser", NULL };
+static const char *calendarcmd[]   = { "gsimplecal", NULL };
+static const char *cpucmd[]        = { "/home/ok/bin/cpu_control.sh", NULL };
 static const char *dictcmd[]       = { "stardict", NULL };
-static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor,
-                                       "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[]      = { "dmenu_run", "-i", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG],
+                                       "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
+static const char *fancmd[]        = { "/home/ok/bin/fan_control.sh", NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
 static const char *irccmd[]        = {"urxvtc", "-title", "Weechat", "-e", "weechat-curses", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
@@ -181,5 +184,8 @@ static Button buttons[] = {
     { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
     { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
     { ClkRootWin,           0,              Button3,        spawn,          {.v = menucmd } },
+    { ClkStatusText,        0,              Button1,        spawn,          {.v = calendarcmd } },
+    { ClkStatusText,        0,              Button3,        spawn,          {.v = cpucmd } },
+    { ClkStatusText,        MODKEY,         Button3,        spawn,          {.v = fancmd } },
 };
 

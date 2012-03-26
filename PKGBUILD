@@ -21,14 +21,15 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         im-grid.c
         togglefullscreen.c
         push.c)
-_patches=(01-dwm-$pkgver-pertag2.diff
-          02-dwm-$pkgver-scratchpad-stay.diff
-          03-dwm-$pkgver-xbm_layout_icons.diff
-          04-dwm-$pkgver-cflags.diff
-          05-dwm-$pkgver-urgentcolor.diff
+_patches=(01-dwm-$pkgver-statuscolors.diff
+          02-dwm-$pkgver-pertag2.diff
+          03-dwm-$pkgver-scratchpad-stay.diff
+          04-dwm-$pkgver-xbm_layout_icons.diff
+          05-dwm-$pkgver-cflags.diff
           06-dwm-$pkgver-monocle_no_borders.diff
           07-dwm-$pkgver-centred-floating.diff
-          08-dwm-$pkgver-save_floats.diff)
+          08-dwm-$pkgver-save_floats.diff
+          09-dwm-$pkgver-systray.diff)
 source=(${source[@]} ${_patches[@]})
 
 
@@ -37,6 +38,7 @@ build() {
   
   # patch time!
   for p in "${_patches[@]}"; do
+  	echo "--- $p ---"
     patch < ../$p || return 1
   done
 
