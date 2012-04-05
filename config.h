@@ -73,7 +73,6 @@ static const Rule rules[] = {
         { "URxvt",                NULL,      NULL,                 0,         False,                  -1 },
         { "Stardict",             NULL,      NULL,                 0,         True,                   -1 },
         { "Zenity",               NULL,      NULL,                 0,         True,                   -1 },
-        {  NULL,                  NULL,     "pygtk-shutdown",      0,         True,                   -1 },
 };
 
 /* key definitions */
@@ -105,7 +104,7 @@ static const char *passcmd[]       = { "qpass", NULL };
 static const char *reloadcmd[]     = { "/home/ok/bin/dwm-reload.sh", NULL };
 static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
 static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
-static const char *shutdowncmd[]   = { "/home/ok/bin/pygtk-shutdown", NULL };
+static const char *shutdowncmd[]   = { "/home/ok/bin/dmenu-powerbutton", NULL };
 static const char *termcmd[]       = { "urxvtc", NULL };
 static const char *tmuxcmd[]       = { "urxvtc", "-title", "tmux", "-e", "/home/ok/bin/tmux.sh", NULL };
 static const char *voldowncmd[]    = { "amixer", "-q", "set", "Master", "2dB-",  NULL };
