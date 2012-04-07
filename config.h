@@ -7,12 +7,17 @@
 /* appearance */
 static const char font[]            = "-*-termsyn.icons-medium-*-*-*-11-*-*-*-*-*-*-*";
 
-#define NUMCOLORS         3
+#define NUMCOLORS         8
 static const char colors[NUMCOLORS][ColLast][8] = {
     // border     foreground background
-    { "#1A1A1A", "#808080", "#020202" },  // normal
-    { "#4C4C4C", "#B3B3B3", "#020202" },  // selected
-    { "#B3354C", "#B3354C", "#020202" },  // urgent
+    { "#1A1A1A", "#808080", "#020202" },  // gray
+    { "#4C4C4C", "#B3B3B3", "#020202" },  // white
+    { "#B3354C", "#B3354C", "#020202" },  // red
+    { "#1C678C", "#1C678C", "#020202" },  // blue
+    { "#684D80", "#684D80", "#020202" },  // magenta
+    { "#877C43", "#877C43", "#020202" },  // yellow
+    { "#608040", "#608040", "#020202" },  // green
+    { "#337373", "#337373", "#020202" },  // cyan
 };
 
 static const unsigned int borderpx       = 1;                // border pixel of windows
@@ -55,6 +60,7 @@ static const Rule rules[] = {
         // class                  instance  title                  tags mask  isfloating  iscentred   monitor
         {  NULL,                  NULL,     "tmux",                1 << 0,    False,                  -1 },
         { "Firefox",              NULL,      NULL,                 1 << 1,    False,                  -1 },
+        { "luakit",               NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "OperaNext",            NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Opera",                NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Cr3",                  NULL,      NULL,                 1 << 2,    False,                  -1 },
@@ -112,6 +118,10 @@ static const char *voltogglecmd[]  = { "amixer", "-q", "set", "Master", "toggle"
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "2dB+",  NULL };
 static const char *wificmd[]       = { "urxvtc", "-e", "sudo", "wifi-select", "wlan0", NULL };
 
+static const char *playcmd[]       = { "player_control", "pause", NULL };
+static const char *prevcmd[]       = { "player_control", "prev", NULL };
+static const char *nextcmd[]       = { "player_control", "next", NULL };
+
 static Key keys[] = {
    // modifier                       key                       function          argument
     { Mod4Mask,                      XK_a,                     spawn,            {.v = addresscmd } },
@@ -134,6 +144,10 @@ static Key keys[] = {
     { 0,                             XF86XK_AudioMute,         spawn,            {.v = voltogglecmd } },
     { 0,                             XF86XK_AudioRaiseVolume,  spawn,            {.v = volupcmd } },
     { Mod4Mask,                      XK_w,                     spawn,            {.v = wificmd } },
+
+    { Mod4Mask,                      XK_Down,                  spawn,            {.v = playcmd } },
+    { Mod4Mask,                      XK_Left,                  spawn,            {.v = prevcmd } },
+    { Mod4Mask,                      XK_Right,                 spawn,            {.v = nextcmd } },
 
     { MODKEY,                        XK_Down,                  focusstack,       {.i = +1 } },
     { MODKEY,                        XK_Up,                    focusstack,       {.i = -1 } },
