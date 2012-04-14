@@ -7,17 +7,18 @@
 /* appearance */
 static const char font[]            = "-*-termsyn.icons-medium-*-*-*-11-*-*-*-*-*-*-*";
 
-#define NUMCOLORS         8
-static const char colors[NUMCOLORS][ColLast][8] = {
+#define NUMCOLORS 9
+static const char colors[NUMCOLORS][ColLast][9] = {
     // border     foreground background
     { "#1A1A1A", "#808080", "#020202" },  // gray
     { "#4C4C4C", "#B3B3B3", "#020202" },  // white
-    { "#B3354C", "#B3354C", "#020202" },  // red
+    { "#B3354C", "#B3354C", "#020202" },  // light red
     { "#1C678C", "#1C678C", "#020202" },  // blue
     { "#684D80", "#684D80", "#020202" },  // magenta
     { "#877C43", "#877C43", "#020202" },  // yellow
     { "#608040", "#608040", "#020202" },  // green
     { "#337373", "#337373", "#020202" },  // cyan
+    { "#802635", "#802635", "#020202" },  // red
 };
 
 static const unsigned int borderpx       = 1;                // border pixel of windows
