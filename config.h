@@ -5,7 +5,7 @@
 #include "togglefullscreen.c"
 
 /* appearance */
-static const char font[]            = "-*-termsyn.icons-medium-*-*-*-11-*-*-*-*-*-*-*";
+static const char font[]            = "-OK100-termsyn-medium-*-*-*-11-*-*-*-*-*-*-*";
 
 #define NUMCOLORS 9
 static const char colors[NUMCOLORS][ColLast][9] = {
@@ -18,7 +18,7 @@ static const char colors[NUMCOLORS][ColLast][9] = {
     { "#877C43", "#877C43", "#020202" },  // yellow
     { "#608040", "#608040", "#020202" },  // green
     { "#337373", "#337373", "#020202" },  // cyan
-    { "#802635", "#802635", "#020202" },  // red
+    { "#A64286", "#A64286", "#020202" },  // light cyan
 };
 
 static const unsigned int borderpx       = 1;                // border pixel of windows
@@ -47,21 +47,21 @@ static const Layout layouts[] = {
 /* tagging */
 static const Tag tags[] = {
         // name       layout           mfact    nmaster
-        { "¹",        &layouts[3],     -1,      -1 },
-        { "Ú",        &layouts[3],     -1,      -1 },
-        { "´",        &layouts[3],     -1,      -1 },
-        { "²",        &layouts[1],     -1,      -1 },
-        { "©",        &layouts[4],   0.22,      -1 },
-        { "ê",        &layouts[0],   0.65,      -1 },
-        { "º",        &layouts[2],     -1,      -1 },
+        { "",        &layouts[3],     -1,      -1 },
+        { "",        &layouts[3],     -1,      -1 },
+        { "",        &layouts[3],     -1,      -1 },
+        { "",        &layouts[1],     -1,      -1 },
+        { "",        &layouts[4],   0.22,      -1 },
+        { "",        &layouts[0],   0.65,      -1 },
+        { "",        &layouts[2],     -1,      -1 },
 };
 
 /* window rules */
 static const Rule rules[] = {
         // class                  instance  title                  tags mask  isfloating  iscentred   monitor
         {  NULL,                  NULL,     "tmux",                1 << 0,    False,                  -1 },
+        { "Dwb",                  NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Firefox",              NULL,      NULL,                 1 << 1,    False,                  -1 },
-        { "luakit",               NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "OperaNext",            NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Opera",                NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Cr3",                  NULL,      NULL,                 1 << 2,    False,                  -1 },
@@ -105,7 +105,7 @@ static const char *fancmd[]        = { "/home/ok/bin/fan_control.sh", NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
 static const char *irccmd[]        = {"urxvtc", "-title", "Weechat", "-e", "weechat-curses", NULL };
 static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
-static const char *menucmd[]       = { "/home/ok/bin/mygtkmenu.py", NULL };
+static const char *menucmd[]       = { "mygtkmenu", "/home/ok/.menu", NULL };
 static const char *monitorcmd[]    = { "/home/ok/bin/monitor-dwm.sh", NULL };
 static const char *passcmd[]       = { "qpass", NULL };
 static const char *reloadcmd[]     = { "/home/ok/bin/dwm-reload.sh", NULL };
