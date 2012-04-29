@@ -1,14 +1,22 @@
---- dwm.c.orig	2012-03-26 19:07:38.652228022 +0200
-+++ dwm.c	2012-03-26 19:12:56.104395747 +0200
-@@ -120,6 +120,7 @@ typedef struct {
+--- dwm.c.orig	2012-04-29 19:07:00.000000000 +0200
++++ dwm.c	2012-04-29 19:07:40.237787666 +0200
+@@ -120,10 +120,15 @@ typedef struct {
  } Key;
  
  typedef struct {
-+    const char *icon;
++	const char *icon;
  	const char *symbol;
  	void (*arrange)(Monitor *);
  } Layout;
-@@ -188,6 +189,7 @@ static void die(const char *errstr, ...)
+ 
++typedef struct {
++	const char *icon;
++} MonocleNumberedIcon;
++
+ struct Monitor {
+ 	char ltsymbol[16];
+ 	int num;
+@@ -188,6 +193,7 @@ static void die(const char *errstr, ...)
  static Monitor *dirtomon(int dir);
  static void drawbar(Monitor *m);
  static void drawbars(void);
@@ -16,7 +24,16 @@
  static void drawcoloredtext(char *text);
  static void drawsquare(Bool filled, Bool empty, unsigned long col[ColLast]);
  static void drawtext(const char *text, unsigned long col[ColLast], Bool pad);
-@@ -767,8 +769,16 @@ drawbar(Monitor *m) {
+@@ -750,7 +756,7 @@ dirtomon(int dir) {
+ void
+ drawbar(Monitor *m) {
+ 	int x;
+-	unsigned int i, occ = 0, urg = 0;
++	unsigned int i, occ = 0, urg = 0, n = 0;
+ 	unsigned long *col;
+ 	Client *c;
+ 
+@@ -767,8 +773,26 @@ drawbar(Monitor *m) {
  		drawsquare(m == selmon && selmon->sel && selmon->sel->tags & 1 << i, occ & 1 << i, col);
  		dc.x += dc.w;
  	}
@@ -24,18 +41,28 @@
 -	drawtext(m->ltsymbol, dc.colors[0], True);
 +	blw = TEXTW(m->ltsymbol);
 +
-+    if(useicons) {
-+        dc.w = dc.h;
-+        drawicon(m->lt[m->sellt]->icon, dc.colors[0]);
-+    }
-+    else {
-+        dc.w = blw;
-+        drawtext(m->ltsymbol, dc.colors[0], False);
-+    }
++	if(useicons) {
++		dc.w = dc.h;
++		if(selmon->lt[selmon->sellt]->arrange == monocle) {
++			for(c = m->clients; c; c = c->next)
++				if(ISVISIBLE(c))
++					n++;
++			if(n < LENGTH(monoclenumberedicons))
++				drawicon(monoclenumberedicons[n].icon, dc.colors[0]);
++			else
++				drawicon(m->lt[m->sellt]->icon, dc.colors[0]);
++		}
++	 	else
++			drawicon(m->lt[m->sellt]->icon, dc.colors[0]);
++	}
++	else {
++		dc.w = blw;
++		drawtext(m->ltsymbol, dc.colors[0], False);
++	}
  	dc.x += dc.w;
  	x = dc.x;
  	if(m == selmon) { /* status is only drawn on selected monitor */
-@@ -835,6 +845,20 @@ drawcoloredtext(char *text) {
+@@ -835,6 +859,20 @@ drawcoloredtext(char *text) {
  }
  
  void

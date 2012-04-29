@@ -44,6 +44,15 @@ static const Layout layouts[] = {
     { "/home/ok/build/dwm/icons/grid.xbm",     "ú",      imgrid },
 };
 
+static const MonocleNumberedIcon monoclenumberedicons[] = {
+	{ "/home/ok/build/dwm/icons/monocle0.xbm" },
+	{ "/home/ok/build/dwm/icons/monocle1.xbm" },
+	{ "/home/ok/build/dwm/icons/monocle2.xbm" },
+	{ "/home/ok/build/dwm/icons/monocle3.xbm" },
+	{ "/home/ok/build/dwm/icons/monocle4.xbm" },
+	{ "/home/ok/build/dwm/icons/monocle5.xbm" },
+};
+
 /* tagging */
 static const Tag tags[] = {
         // name       layout           mfact    nmaster
