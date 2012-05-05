@@ -5,20 +5,32 @@
 #include "togglefullscreen.c"
 
 /* appearance */
-static const char font[]            = "-OK100-termsyn-medium-*-*-*-11-*-*-*-*-*-*-*";
+static const char font[] = "-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*" "," "-*-termsyn-medium-*-*-*-11-*-*-*-*-*-iso8859-2";
 
-#define NUMCOLORS 9
-static const char colors[NUMCOLORS][ColLast][9] = {
+#define NUMCOLORS 20
+static const char colors[NUMCOLORS][ColLast][20] = {
     // border     foreground background
-    { "#1A1A1A", "#808080", "#020202" },  // gray
-    { "#4C4C4C", "#B3B3B3", "#020202" },  // white
-    { "#B3354C", "#B3354C", "#020202" },  // light red
-    { "#1C678C", "#1C678C", "#020202" },  // blue
-    { "#684D80", "#684D80", "#020202" },  // magenta
-    { "#877C43", "#877C43", "#020202" },  // yellow
-    { "#608040", "#608040", "#020202" },  // green
-    { "#337373", "#337373", "#020202" },  // cyan
-    { "#A64286", "#A64286", "#020202" },  // light cyan
+    { "#1A1A1A", "#808080", "#020202" },  // 01 - normal
+    { "#4C4C4C", "#B3B3B3", "#020202" },  // 02 - selected
+    { "#B3354C", "#B3354C", "#020202" },  // 03 - urgent
+
+    { "#1A1A1A", "#1A1A1A", "#020202" },  // 04 - black
+    { "#802635", "#802635", "#020202" },  // 05 - red
+    { "#608040", "#608040", "#020202" },  // 06 - green
+    { "#877C43", "#877C43", "#020202" },  // 07 - yellow
+    { "#1C678C", "#1C678C", "#020202" },  // 08 - blue
+    { "#684D80", "#684D80", "#020202" },  // 09 - magenta
+    { "#000000", "#000000", "#000000" },  // unusable
+    { "#337373", "#337373", "#020202" },  // 0B - cyan
+    { "#808080", "#808080", "#020202" },  // 0C - light gray
+    { "#4C4C4C", "#4C4C4C", "#020202" },  // 0D - gray
+    { "#B3354C", "#B3354C", "#020202" },  // 0E - light red
+    { "#4BA65A", "#4BA65A", "#020202" },  // 0F - light green
+    { "#BF9F5F", "#BF9F5F", "#020202" },  // 10 - light yellow
+    { "#3995BF", "#3995BF", "#020202" },  // 11 - light blue
+    { "#A64286", "#A64286", "#020202" },  // 12 - light magenta
+    { "#6C98A6", "#6C98A6", "#020202" },  // 13 - light cyan
+    { "#B3B3B3", "#B3B3B3", "#020202" },  // 14 - white
 };
 
 static const unsigned int borderpx       = 1;                // border pixel of windows
@@ -56,13 +68,12 @@ static const MonocleNumberedIcon monoclenumberedicons[] = {
 /* tagging */
 static const Tag tags[] = {
         // name       layout           mfact    nmaster
-        { "",        &layouts[3],     -1,      -1 },
-        { "",        &layouts[3],     -1,      -1 },
-        { "",        &layouts[3],     -1,      -1 },
-        { "",        &layouts[1],     -1,      -1 },
-        { "",        &layouts[4],   0.22,      -1 },
-        { "",        &layouts[0],   0.65,      -1 },
-        { "",        &layouts[2],     -1,      -1 },
+        { "",        &layouts[3],     -1,      -1 },
+        { "",        &layouts[3],     -1,      -1 },
+        { "",        &layouts[3],     -1,      -1 },
+        { "",        &layouts[4],   0.22,      -1 },
+        { "",        &layouts[0],   0.65,      -1 },
+        { "",        &layouts[2],     -1,      -1 },
 };
 
 /* window rules */
@@ -71,14 +82,12 @@ static const Rule rules[] = {
         {  NULL,                  NULL,     "tmux",                1 << 0,    False,                  -1 },
         { "Dwb",                  NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Firefox",              NULL,      NULL,                 1 << 1,    False,                  -1 },
-        { "OperaNext",            NULL,      NULL,                 1 << 1,    False,                  -1 },
-        { "Opera",                NULL,      NULL,                 1 << 1,    False,                  -1 },
         { "Cr3",                  NULL,      NULL,                 1 << 2,    False,                  -1 },
-        { "Lazarus",              NULL,      NULL,                 1 << 3,    True,       False,      -1 },
-        { "Skype",                NULL,      NULL,                 1 << 4,    False,                  -1 },
-        {  NULL,                  NULL,     "Weechat",             1 << 4,    False,                  -1 },
-        { "Gimp",                 NULL,      NULL,                 1 << 6,    True,                   -1 },
-        { "Xsane",                NULL,      NULL,                 1 << 6,    True,       False,      -1 },
+        { "Skype",                NULL,      NULL,                 1 << 3,    False,                  -1 },
+        {  NULL,                  NULL,     "Weechat",             1 << 3,    False,                  -1 },
+        { "Gimp",                 NULL,      NULL,                 1 << 5,    True,                   -1 },
+        { "Lazarus",              NULL,      NULL,                 1 << 5,    True,       False,      -1 },
+        { "Xsane",                NULL,      NULL,                 1 << 5,    True,       False,      -1 },
         { "Gsimplecal",           NULL,      NULL,                 0,         True,       False,      -1 },
         { "Lxappearance",         NULL,      NULL,                 0,         True,                   -1 },
         { "mplayer2",             NULL,      NULL,                 0,         True,                   -1 },
@@ -86,7 +95,6 @@ static const Rule rules[] = {
         { "Qalculate-gtk",        NULL,      NULL,                 0,         True,                   -1 },
         { "Qalculate",            NULL,      NULL,                 0,         True,                   -1 },
         { "Qpass",                NULL,      NULL,                 0,         True,                   -1 },
-        { "URxvt",                NULL,      NULL,                 0,         False,                  -1 },
         { "Stardict",             NULL,      NULL,                 0,         True,                   -1 },
         { "Zenity",               NULL,      NULL,                 0,         True,                   -1 },
 };
@@ -117,7 +125,7 @@ static const char *logoutcmd[]     = { "sudo", "killall", "X", NULL };
 static const char *menucmd[]       = { "mygtkmenu", "/home/ok/.menu", NULL };
 static const char *monitorcmd[]    = { "/home/ok/bin/monitor-dwm.sh", NULL };
 static const char *passcmd[]       = { "qpass", NULL };
-static const char *reloadcmd[]     = { "/home/ok/bin/dwm-reload.sh", NULL };
+static const char *reloadcmd[]     = { "killall", "dwm", NULL };
 static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "70x9+400+10", NULL };
 static const char *screenoffcmd[]  = { "xset", "dpms", "force", "off", NULL };
 static const char *shutdowncmd[]   = { "/home/ok/bin/dmenu-powerbutton", NULL };
@@ -186,7 +194,7 @@ static Key keys[] = {
     TAGKEYS(                         XK_ccaron,                                  3)
     TAGKEYS(                         XK_rcaron,                                  4)
     TAGKEYS(                         XK_zcaron,                                  5)
-    TAGKEYS(                         XK_yacute,                                  6)
+//    TAGKEYS(                         XK_yacute,                                  6)
 //    TAGKEYS(                         XK_aacute,                                  7)
 //    TAGKEYS(                         XK_iacute,                                  8)
 };
