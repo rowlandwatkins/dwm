@@ -85,7 +85,7 @@ static const Rule rules[] = {
         { "Cr3",                  NULL,      NULL,                 1 << 2,    False,                  -1 },
         { "Skype",                NULL,      NULL,                 1 << 3,    False,                  -1 },
         {  NULL,                  NULL,     "Weechat",             1 << 3,    False,                  -1 },
-        { "Gimp",                 NULL,      NULL,                 1 << 5,    True,                   -1 },
+        { "Gimp",                 NULL,      NULL,                 1 << 5,    False,                  -1 },
         { "Lazarus",              NULL,      NULL,                 1 << 5,    True,       False,      -1 },
         { "Xsane",                NULL,      NULL,                 1 << 5,    True,       False,      -1 },
         { "Gsimplecal",           NULL,      NULL,                 0,         True,       False,      -1 },
